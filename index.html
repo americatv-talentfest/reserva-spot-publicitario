@@ -38,20 +38,20 @@
   <div class="row">
     <div class="input-field offset-s1 col s10 offset-s1  offset-l3 col l6 offset-l3">
       <i class="material-icons prefix">email</i>
-      <input id="email2" type="email" class="validate">
+      <input id="email" type="email" class="validate">
       <label for="icon_prefix">Email</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field offset-s1 col s10 offset-s1 offset-l3 col l6 offset-l3 ">
       <i class="material-icons prefix">lock</i>
-      <input id="password2" type="password" class="validate">
+      <input id="password" type="password" class="validate">
       <label for="icon_prefix">Password</label>
     </div>
   </div>
   <div class="row">
     <div class="col s6 offset-l3 l3 center-align">
-      <button class="waves-effect  deep-orange accent-3 btn cyan accent-2" id="login">Iniciar Sesión</button>
+      <button class="waves-effect  deep-orange accent-3 btn cyan accent-2" id="login-btn">Iniciar Sesión</button>
     </div>
     <div class="col s6  l3 center-align">
       <button class="waves-effect deep-orange accent-3 btn cyan accent-2 modal-trigger" href="#modal1">Únete</button>
@@ -59,12 +59,13 @@
   </div>
   <div class="row center-align">
     <div class=" offset-l4 col l4 offset-l4  col s12 ">
-      <button id="btnGoogle" class="waves-effect waves-light btn red accent-4">
+      <button id="login-google" class="waves-effect waves-light btn red accent-4">
         <i class="fa fa-google" aria-hidden="true"></i> Ingresar con Google</button>
     </div>
   </div>
 
   <script src="vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="vendors/materialize/js/materialize.min.js"></script>
   <script src="js/app.js"></script>
