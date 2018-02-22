@@ -1,4 +1,4 @@
-# Reseva de Spot Publicitario
+# Reserva de Spot Publicitario
 
 Un proyecto realizado para América TV
 
