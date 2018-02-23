@@ -14,7 +14,7 @@ $(document).ready(() => {
   // seleccionando elementos deL DOM
   let selectHour = $('select#hour');
   let program = $('input.autocomplete-2');
-  let priceProgram;  
+  let dataProgramPrice;  
   let scheduleProgram = [];
 
   // autocompletado de marcas 
@@ -119,7 +119,6 @@ $(document).ready(() => {
     let optionHour;
     debugger;
     getSchedule(startTime, endTime);
-    // program.val(name);
    
     selectHour.html('<option value="" disabled selected>Elige la hora</option>');
     scheduleProgram.forEach((element, index) => {
@@ -128,15 +127,31 @@ $(document).ready(() => {
     selectHour.append(optionHour);   
   };
 
+  // obtiene precio
+  let rode;   
+  let fee;
+  let getPrice = () => {
+    var createDate = new Date(); 
+    let timeOfTheDay = createDate.getHours();
+    rode = (dataProgramPrice + marcas[nombrevar()].price);    
+    if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
+      fee = 0.00;
+    } else if (timeOfTheDay > 12 && timeOfTheDay <= 4) {
+      fee = (rode * 5 / 100);
+    } else if (timeOfTheDay > 16 || timeOfTheDay <= 8) {
+      fee = (rode * 15 / 100);
+    }
+  };
+
+  // temina obtnener monto
+
   function redirectReserve() {
     window.location.href = 'reserve.html';
   }
 
-  let dataProgramPrice; 
   let getDataProgram = (id) => {
     program.val(id);
     program.prop('disabled', 'disabled');
-    
 
     let dataProgramSchedule = programas[id].horario;
 
@@ -144,9 +159,9 @@ $(document).ready(() => {
     
     showDataProgram(dataProgramSchedule);
   };
+
   let redirectViewReserve = (event) => {
     sessionStorage.idProgram = event.target.id;
-    // getDataProgram(idProgram);
     redirectReserve();
   };
 
