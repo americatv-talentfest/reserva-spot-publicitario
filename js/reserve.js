@@ -352,12 +352,12 @@ $(document).ready(() => {
     var confirmationModal = '';
     confirmationModal +=`
     <div class="row">
+    <h4 class="font-color-2">Datos de Reserva</h4>    
     <div class="col offset-l4 l4">
-      <h4 class="font-color-2">Datos de Reserva</h4>
       <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
       <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
         <p class="font-color">Fecha : 24 de Febrero 2018</p>
-         <p class="font-color"> Hora:<span id="mdhour">6.30pm</span></h4>
+         <p class="font-color"> Hora:<span id="mdhour">6.36pm</span></h4>
          <p class="font-color"> Monto : <span>$ 1000</span></p>
          <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
          </div>

@@ -175,4 +175,6 @@ h2{
   }
 }
 
-
+.click span {
+  color: transparent;
+}
