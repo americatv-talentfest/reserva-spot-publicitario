@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   // declaramos variables
   var $loginBtn = $('#login-btn');
@@ -83,4 +84,4 @@ $(document).ready(function() {
       console.log(error);
     });
   });
-});
+})
