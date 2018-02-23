@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../vendors/materialize/css/materialize.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/reserva.css">
+  <link rel="stylesheet" href="../css/reserve.css">
   <title>Login</title>
 </head>
 
@@ -42,13 +42,9 @@
           <input type="text" id="autocomplete-input" class="autocomplete-2">
           <label for="autocomplete-input">Programa</label>
         </div>
-        <select class="browser-default margin-bottom" id="day">
-          <option value="" disabled selected>Elige el día</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select id="father" class="browser-default margin-bottom" id="day">
         </select>
-        <select class="browser-default margin-bottom" id="hour">
+        <select  class="browser-default margin-bottom" id="hour">
           <option value="" disabled selected>Elige la hora</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
@@ -62,7 +58,6 @@
     </div>
 
   </div>
-
   <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
   <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
