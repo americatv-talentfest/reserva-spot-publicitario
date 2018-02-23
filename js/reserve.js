@@ -1,6 +1,54 @@
 $(document).ready(() => {
   $('select').material_select();
-  
+  var arrayConter = {
+    'al-fondo-hay-sitio': [],
+    'al-fondo-hay-sitio-2': [],
+    'america-deportes': [],
+    'amores-de-polo': [],
+    'an-edicion-central': [],
+    'an-edicion-dominical': [],
+    'an-edicion-mediodia': [],
+    'an-edicion-sabado': [],
+    'an-espetaculos': [],
+    'an-matutino': [],
+    'an-primera-edicion': [],
+    'an-primera-edicion-2': [],
+    'antesala': [],
+    'automundo': [],
+    'butaca-domingo': [],
+    'butaca-matine': [],
+    'butaca-sabado': [],
+    'champios': [],
+    'cinescape': [],
+    'cuarto-poder': [],
+    'cumbia-pop': [],
+    'domingo-al-dia': [],
+    'el-chavo-del-ocho': [],
+    'el-chavo-del-ocho-2': [],
+    'el-chavo-del-ocho-3': [],
+    'en-boca-de-todos': [],
+    'estas-en-todas-2': [],
+    'estas-en-todas': [],
+    'esto-es-guerra': [],
+    'futbol-en-america': [],
+    'gisela-busca-el-amor': [],
+    'la-banda-del-chino': [],
+    'la-previa': [],
+    'la-rosa-de-guadalupe': [],
+    'la-rosa-de-guadalupe-2': [],
+    'la-rosa-de-guadalupe-3': [],
+    'la-rosa-de-guadalupe-4': [],
+    'mujeres-sin-filtro': [],
+    'reventonazo-de-la-chola': [],
+    'serie-solamente-milagros': [],
+    'tec': [],
+    'tn-caer-en-tentacion': [],
+    'tn-colorina': [],
+    'tn-marimar': [],
+    'tn-ojitos-hechiceros': [],
+    'tn-privilegio-de-amar': [],
+    'vbq': []
+  };
   var config = {
     apiKey: 'AIzaSyANh-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
     authDomain: 'americatv-246b8.firebaseapp.com',
@@ -123,7 +171,7 @@ $(document).ready(() => {
     let startTime = schedule[0];
     let endTime = schedule[1];
     let optionHour;
-    
+
     getSchedule(startTime, endTime);
     // program.val(name);
    
@@ -178,4 +226,11 @@ $(document).ready(() => {
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
   $('#reservation-modal').modal();
+  $(document).on('change', '#hour', function(event) {
+    $('#hour option:selected').prop('disabled', 'disabled');
+    $('#confirm').on('click', function() {
+      sessionStorage.idHour = ($('#hour option:selected ').val());
+      
+    });
+  });
 });
