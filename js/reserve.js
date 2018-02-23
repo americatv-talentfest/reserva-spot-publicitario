@@ -1,7 +1,19 @@
 $(document).ready(() => {
+  $('select').material_select();
+  
+  var config = {
+    apiKey: 'AIzaSyANh-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
+    authDomain: 'americatv-246b8.firebaseapp.com',
+    databaseURL: 'https://americatv-246b8.firebaseio.com',
+    projectId: 'americatv-246b8',
+    storageBucket: 'americatv-246b8.appspot.com',
+    messagingSenderId: '716121533286'
+  };
+ 
+  firebase.database();
   // seleccionando elementos deL DOM
   let selectHour = $('select#hour');
-  let program = $('input#program');
+  let program = $('input.autocomplete-2');
   let priceProgram;  
   let scheduleProgram = [];
 
@@ -87,7 +99,7 @@ $(document).ready(() => {
     minutes += ((hourEnd - hourStart) - 1) * 60 ;
     minutes += endTime[1];
     let sponsorTotal = minutes / 10;
-    let counterSponsor;
+    let counterSponsor = 0;
     for (let timeCounter = startTime[1]; counterSponsor < sponsorTotal; counterSponsor++) {
       if (timeCounter === 60) {
         timeCounter = 00;
@@ -101,42 +113,40 @@ $(document).ready(() => {
     }
   };
 
-  let showDataProgram = (schedule, price, name) => {
+  let showDataProgram = (schedule) => {
     let startTime = schedule[0];
     let endTime = schedule[1];
     let optionHour;
+    debugger;
     getSchedule(startTime, endTime);
-    program.val(name);
+    // program.val(name);
+   
     selectHour.html('<option value="" disabled selected>Elige la hora</option>');
     scheduleProgram.forEach((element, index) => {
-      optionHour = `<option value="${index}">${element}</option>`;
-      selectHour.append();      
+      optionHour += `<option value="${index}">${element}</option>`;
     });
+    selectHour.append(optionHour);   
   };
 
   function redirectReserve() {
     window.location.href = 'reserve.html';
   }
 
+  let dataProgramPrice; 
   let getDataProgram = (id) => {
-    let dataProgramSchedule = firebase.database().ref('programas/' + id + '/horario');
-    let dataProgramPrice = firebase.database().ref('programas/' + id + '/precio');
-    let dataProgramaName = firebase.database().ref('programas/' + id + '/name');    
-    let schedule;
-    dataProgramSchedule.on('value', function(snapshot) {
-      schedule = snapshot.val();
-    });
+    program.val(id);
+    program.prop('disabled', 'disabled');
+    
 
-    dataProgramPrice.on('value', function(snapshot) {
-      priceProgram = snapshot.val();
-    });
+    let dataProgramSchedule = programas[id].horario;
 
-    showDataProgram(schedule);
+    dataProgramPrice = programas[id].precio;
+    
+    showDataProgram(dataProgramSchedule);
   };
-
   let redirectViewReserve = (event) => {
-    let idProgram = event.target.id;
-    getDataProgram(idProgram);
+    sessionStorage.idProgram = event.target.id;
+    // getDataProgram(idProgram);
     redirectReserve();
   };
 
@@ -146,7 +156,7 @@ $(document).ready(() => {
   });
 
 
-  // var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+  var meses = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
   var diasSemana = new Array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
   var f = new Date();
   var day = f.getDay();
@@ -161,6 +171,7 @@ $(document).ready(() => {
   var tomDay = diasSemana[f.getDay() + 1];
   var tomDay1 = diasSemana[f.getDay() - 4];
   var tomDay2 = diasSemana[f.getDay() - 3];
-
+  let idsession = sessionStorage.idProgram;
+  getDataProgram(idsession);
   $('#reservation-modal').modal();
 });

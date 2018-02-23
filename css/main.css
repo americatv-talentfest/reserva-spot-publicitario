@@ -1,15 +1,22 @@
 *{
-  /*outline: 2px solid red;*/
+ 
+  font-family: 'Roboto', sans-serif;
+  color: white;
 }
 body{
-  
+  background-image: url(../assets/images/fondos-03.png);
+  background-size: cover;
 }
+
 .logo{
   height: 60px;
   width: 60px;
   display: inline-block;
   padding: 5px;
 }
+
+/*estilos a nav*/
+
 .nav-wrapper{
   background: #FF5000;
 }
@@ -32,3 +39,86 @@ body{
    font-size: 18px;
    color: #fff;
 }
+
+.vh-200{
+  height: 180vh;
+}
+.vh-200 p.p-height{
+  height:5.882352941176471%;
+  border: 1px solid black;
+  
+}
+.vh-200 p.p-height-18{
+  height:5.55555555556%;
+  border: 1px solid black;
+}
+.vh-200 p.p-height-14{
+  height:7.14571428%;
+  border: 1px solid black;
+}
+.vh-200 p.p-height-11{
+  height:9.09090909090909%;
+  border: 1px solid black;
+}
+/*estilos a home*/
+#week{
+  color: black;
+}
+
+#week option{
+  color: black;
+}
+
+.foo{
+  outline: 1px solid red;
+}
+
+.general .col-general{
+  padding: 0 0.2rem;
+}
+
+/*medias*/
+@media only screen and (min-width: 993px){
+.row .col.l1 {
+    width: 12%;
+}
+}
+p{
+  margin: 0px;
+ 
+}
+span{
+  color:#fff;
+}
+@media only screen and (max-width: 768px){
+  .vh-200{
+    height:auto;
+  }
+  .valign-wrapper{
+    display: block;
+  }
+  }
+
+h2{
+  font-family: 'Patua One', cursive;
+  color: #FF5000;
+}
+
+.modal-trigger{
+  background-color: #FF5000;
+}
+
+@media (min-width: 600px){
+  body{
+    background-image: url(../assets/images/fondos-02.png);
+    background-size: cover;
+  }
+}
+@media (min-width: 992px){
+  body{
+    background-image: url(../assets/images/fondos-01.png);
+    background-size: cover;
+  }
+}
+
+
