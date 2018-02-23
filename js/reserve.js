@@ -1,23 +1,9 @@
-// Initialize Firebase
-// var config = {
-//   apiKey: 'AIzaSyAmérica-Noticiash-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
-//   authDomain: 'américatv-246b8.firebaseapp.com',
-//   databaseURL: 'https://américatv-246b8.firebaseio.com',
-//   projectId: 'américatv-246b8',
-//   storageBucket: 'américatv-246b8.appspot.com',
-//   messagingSenderId: '716121533286'
-// };
-// firebase.initializeApp(config);
-
-// Get a reference to the database service
-
 $(document).ready(() => {
   // seleccionando elementos deL DOM
-  let selectDay = $('slect#day');
   let selectHour = $('select#hour');
   let program = $('input#program');
-  let price;  
-  let schedulePrograma = [];
+  let priceProgram;  
+  let scheduleProgram = [];
 
   // autocompletado de marcas 
   $('input.autocomplete').autocomplete({
@@ -211,21 +197,22 @@ $(document).ready(() => {
         timeCounter = (timeCounter - 60);
         hourCounter += 1;        
       }
-      schedulePrograma.push(`${hourStart} : ${timeCounter}`);      
+      scheduleProgram.push(`${hourStart} : ${timeCounter}`);      
       timeCounter += 10;
     }
-    schedulePrograma.push(`${hourStart}:${timeCounter + 10}`);
-  };
-
-  let showPrice = (price) => {
-    
   };
 
   let showDataProgram = (schedule, price, name) => {
     let startTime = schedule[0];
     let endTime = schedule[1];
+    let optionHour;
     getSchedule(startTime, endTime);
-
+    program.val(name);
+    selectHour.html('<option value="" disabled selected>Elige la hora</option>');
+    scheduleProgram.forEach((element, index) => {
+      optionHour = `<option value="${index}">${element}</option>`;
+      selectHour.append();      
+    });
   };
 
   function redirectReserve() {
@@ -235,24 +222,23 @@ $(document).ready(() => {
   let getDataProgram = (id) => {
     let dataProgramSchedule = firebase.database().ref('programas/' + id + '/horario');
     let dataProgramPrice = firebase.database().ref('programas/' + id + '/precio');
-    // let dataProgramName = firebase.database().ref('programas/' + id + '/name');    
+    let dataProgramaName = firebase.database().ref('programas/' + id + '/name');    
     let schedule;
     dataProgramSchedule.on('value', function(snapshot) {
       schedule = snapshot.val();
     });
 
     dataProgramPrice.on('value', function(snapshot) {
-      price = snapshot.val();
+      priceProgram = snapshot.val();
     });
 
-    showDataProgram(schedule, price);
-    // redirectReserve();
+    showDataProgram(schedule);
   };
 
   let redirectViewReserve = (event) => {
     let idProgram = event.target.id;
     getDataProgram(idProgram);
-    // window.location.href('reserve.html');
+    redirectReserve();
   };
 
   let programs = $('.click');
