@@ -1,11 +1,14 @@
 *{
  
   font-family: 'Roboto', sans-serif;
-  color: white;
 }
 body{
   background-image: url(../assets/images/fondos-03.png);
   background-size: cover;
+}
+
+.f-white{
+  color: white;
 }
 
 .logo{
@@ -13,6 +16,22 @@ body{
   width: 60px;
   display: inline-block;
   padding: 5px;
+}
+
+/*reserva*/
+#autocomplete-input:disabled{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+#input-auto:after{
+  color: white;
+}
+
+.back-btn{
+  position: absolute;
+  top: 100px;
+  left: 40px;
 }
 
 /*estilos a nav*/
@@ -32,7 +51,7 @@ body{
   margin: 0px;
 }
 .div-day{
-   background: #FF5000;
+   background: black;
    border-radius: 5px;
    padding-top: 10px;
    padding-bottom: 10px;
@@ -69,12 +88,39 @@ body{
   color: black;
 }
 
-.foo{
-  outline: 1px solid red;
-}
 
 .general .col-general{
   padding: 0 0.2rem;
+}
+.leyenda{
+  margin: 20px 0;
+}
+
+.leyenda-1{
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  background-color: green;
+  display: inline-block;
+}
+.leyenda-2{
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  background-color: orange;
+  display: inline-block;
+}
+.leyenda-3{
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  background-color: gray;
+  display: inline-block;
+}
+
+.inline-block{
+  display: inline-block;
+  font-size: 12px;
 }
 
 /*medias*/

@@ -50,6 +50,10 @@ var programas = {
     'horario': [ [ 2, 30 ], [ 4, 0 ] ],
     'precio': 2000
   },
+  'al-fondo-hay-sitio-2': {
+    'horario': [ [ 16, 40 ], [ 17,45 ] ],
+    'precio': 2200
+  },
   'america-deportes': {
     'horario': [ [ 8, 20 ], [ 8, 30 ] ],
     'precio': 500
@@ -83,8 +87,13 @@ var programas = {
     'precio': 2000
   },
   'an-primera-edicion': {
+
     'horario': [ [ 5, 16 ], [9,00 ]],
     'precio': 2500
+  },
+  'an-primera-edicion-2': {
+    'horario': [ [ 8,20 ], [9,0 ]],
+    'precio': 2300
   },
   'antesala': {
     'horario': [ [ 14, 35 ], [ 14, 45 ] ],
@@ -127,15 +136,29 @@ var programas = {
     'precio': 2900
   },
   'el-chavo-del-ocho': {
-    'horario': [ [ 12, 30 ], [ 14, 30 ] ],
-    'precio': 1500
+    'horario': [ [ 11, 58 ], [ 12, 30 ] ],
+    'precio': 1400
+  },
+  'el-chavo-del-ocho-2': {
+    'horario': [ [ 13, 55 ], [ 15, 10 ] ],
+    'precio': 1300
+  },
+  'el-chavo-del-ocho-3': {
+    'horario': [ [ 11, 58 ], [ 14, 30 ] ],
+    'precio': 1400
   },
   'en-boca-de-todos': {
     'horario': [ [ 14, 30 ], [ 16, 00 ] ],
     'precio': 3400
   },
+  'estas-en-todas-2': {
+    'horario': [ [ 5, 30], [ 6, 50 ] ],
+    'precio': 2000
+  },
   'estas-en-todas': {
+
     'horario': [ [ 9, 00 ], [ 11, 00 ] ],
+
     'precio': 2800
   },
   'esto-es-guerra': {
@@ -160,6 +183,18 @@ var programas = {
   },
   'la-rosa-de-guadalupe': {
     'horario': [ [ 17, 00 ], [ 18, 25 ] ],
+    'precio': 2000
+  },
+  'la-rosa-de-guadalupe-2': {
+    'horario': [ [ 17, 30], [ 18, 25 ] ],
+    'precio': 1800
+  },
+  'la-rosa-de-guadalupe-3': {
+    'horario': [ [ 17, 45], [ 18, 55] ],
+    'precio': 2300
+  },
+  'la-rosa-de-guadalupe-4': {
+    'horario': [ [ 18, 00 ], [ 20, 00 ] ],
     'precio': 2000
   },
   'mujeres-sin-filtro': {
