@@ -212,15 +212,15 @@ $(document).ready(() => {
   }
 
   // hora
-  selectHour.on('input', function() {
-    console.log(selectHour.val());
-    if (selectHour.val()) {
-      verifyHour = true;
-      verifyBtnActive();
-    } else {
-      verifyBtnInactive();
-    }
-  });
+  // selectHour.on('input', function() {
+  //   console.log(selectHour.val());
+  //   if (selectHour.val()) {
+  //     verifyHour = true;
+  //     verifyBtnActive();
+  //   } else {
+  //     verifyBtnInactive();
+  //   }
+  // });
 
   // dias
   dayOfWeek.on('input', function() {
@@ -238,5 +238,22 @@ $(document).ready(() => {
   // redireccionamiento de boton a siguiente vista
   function redirectReserve() {
     window.location.href = 'reserve.html';
+  }
+
+  verifyReservationBtn.on('click', triggerConfirmModal);
+
+  function triggerConfirmModal() {
+    var confirmationModal = '';
+    confirmationModal +=`
+    <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+    `
   }
 });
