@@ -1,3 +1,6 @@
+*{
+ box-sizing: border-box;
+}
 body{
   
 }
@@ -29,3 +32,43 @@ body{
    font-size: 18px;
    color: #fff;
 }
+.vh-200{
+  height: 180vh;
+}
+.vh-200 p.p-height{
+  height:5.882352941176471%;
+  border: 1px solid black;
+  
+}
+.vh-200 p.p-height-18{
+  height:5.55555555556%;
+  border: 1px solid black;
+}
+.vh-200 p.p-height-14{
+  height:7.14571428%;
+  border: 1px solid black;
+}
+.vh-200 p.p-height-11{
+  height:9.09090909090909%;
+  border: 1px solid black;
+}
+@media only screen and (min-width: 993px){
+.row .col.l1 {
+    width: 11.5%;
+}
+}
+p{
+  margin: 0px;
+ 
+}
+span{
+  color:#fff;
+}
+@media only screen and (max-width: 768px){
+  .vh-200{
+    height:auto;
+  }
+  .valign-wrapper{
+    display: block;
+  }
+  }
