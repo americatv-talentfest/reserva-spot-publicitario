@@ -47,10 +47,10 @@ $(document).ready(function() {
   });
 
   // funcion click del boton login 
-  $loginBtn.click(function() {
-    console.log('click');
-    window.location.href = 'views/home.html';
-  });
+  // $loginBtn.click(function() {
+  //   console.log('click');
+  //   window.location.href = 'views/home.html';
+  // });
 
   // Inicializando Firebase
   var config = {
@@ -62,7 +62,29 @@ $(document).ready(function() {
     messagingSenderId: '716121533286'
   };
   firebase.initializeApp(config);
-  firebase.database();
+  var database = firebase.database();
+
+  // Login con email/Funcion click del login
+  $loginBtn.click(function(event) {
+    event.preventDefault();
+
+    var email = $email.val();
+    var password = $password.val();
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        $(location).attr('href', 'views/home.html');
+      }
+    });
+  });
   
   // Iniciando autentificación con Google
   var provider = new firebase.auth.GoogleAuthProvider();
