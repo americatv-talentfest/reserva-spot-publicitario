@@ -12,5 +12,23 @@ body{
 }
 .nav-wrapper{
   background: #FF5000;
-
+}
+ h1{
+   color: #FF5000;
+ }
+ .bar{
+   height:40px ;
+   background: #FF5000;
+   border-radius: 5px;
+ }
+#table{
+  margin: 0px;
+}
+.div-day{
+   background: #FF5000;
+   border-radius: 5px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   font-size: 18px;
+   color: #fff;
 }
