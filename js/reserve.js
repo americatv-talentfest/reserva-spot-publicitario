@@ -1,14 +1,23 @@
 $(document).ready(() => {
-
+  
   $(document).ready(function() {
     $('select').material_select();
   });
-
+  var config = {
+    apiKey: 'AIzaSyANh-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
+    authDomain: 'americatv-246b8.firebaseapp.com',
+    databaseURL: 'https://americatv-246b8.firebaseio.com',
+    projectId: 'americatv-246b8',
+    storageBucket: 'americatv-246b8.appspot.com',
+    messagingSenderId: '716121533286'
+  };
+ 
+  firebase.database();
   // seleccionando elementos deL DOM
   let selectHour = $('select#hour');
   let program = $('input#program');
   let priceProgram;  
-  let scheduleProgram = [];
+  //let scheduleProgram = [];
 
   // autocompletado de marcas 
   $('input.autocomplete').autocomplete({
@@ -106,7 +115,7 @@ $(document).ready(() => {
     }
   };
 
-  let showDataProgram = (schedule, price, name) => {
+  /*let showDataProgram = (schedule, price, name) => {
     let startTime = schedule[0];
     let endTime = schedule[1];
     let optionHour;
@@ -117,14 +126,15 @@ $(document).ready(() => {
       optionHour = `<option value="${index}">${element}</option>`;
       selectHour.append();      
     });
-  };
+  };*/
 
   function redirectReserve() {
     window.location.href = 'reserve.html';
   }
 
   let getDataProgram = (id) => {
-    let dataProgramSchedule = firebase.database().ref('programas/' + id + '/horario');
+    let dataProgramSchedule = firebase.database().ref('programas/');
+    console.log(dataProgramSchedule);
     let dataProgramPrice = firebase.database().ref('programas/' + id + '/precio');
     let dataProgramaName = firebase.database().ref('programas/' + id + '/name');    
     let schedule;
@@ -139,19 +149,19 @@ $(document).ready(() => {
     showDataProgram(schedule);
   };
 
-  let redirectViewReserve = (event) => {
+  /*let redirectViewReserve = (event) => {
     let idProgram = event.target.id;
     getDataProgram(idProgram);
-    redirectReserve();
-  };
+    
+  };*/
 
-  let programs = $('.click');
+  /*let programs = $('.click');
   [programs].forEach(program => {
     program.on('click', redirectViewReserve);
-  });
+  });*/
 
 
-  // var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+  /* var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
   var diasSemana = new Array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
   var f = new Date();
   var day = f.getDay();
@@ -167,5 +177,5 @@ $(document).ready(() => {
   var tomDay1 = diasSemana[f.getDay() - 4];
   var tomDay2 = diasSemana[f.getDay() - 3];
 
-  $('#reservation-modal').modal();
+  $('#reservation-modal').modal();*/
 });
