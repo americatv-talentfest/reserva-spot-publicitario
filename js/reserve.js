@@ -1,18 +1,24 @@
 // Initialize Firebase
-var config = {
-  apiKey: 'AIzaSyAmerica-Noticiash-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
-  authDomain: 'americatv-246b8.firebaseapp.com',
-  databaseURL: 'https://americatv-246b8.firebaseio.com',
-  projectId: 'americatv-246b8',
-  storageBucket: 'americatv-246b8.appspot.com',
-  messagingSenderId: '716121533286'
-};
-firebase.initializeApp(config);
+// var config = {
+//   apiKey: 'AIzaSyAmérica-Noticiash-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
+//   authDomain: 'américatv-246b8.firebaseapp.com',
+//   databaseURL: 'https://américatv-246b8.firebaseio.com',
+//   projectId: 'américatv-246b8',
+//   storageBucket: 'américatv-246b8.appspot.com',
+//   messagingSenderId: '716121533286'
+// };
+// firebase.initializeApp(config);
 
 // Get a reference to the database service
-let database = firebase.database();
 
 $(document).ready(() => {
+  // seleccionando elementos deL DOM
+  let selectDay = $('slect#day');
+  let selectHour = $('select#hour');
+  let program = $('input#program');
+  let price;  
+  let schedulePrograma = [];
+
   // autocompletado de marcas 
   $('input.autocomplete').autocomplete({
     data: {
@@ -62,21 +68,21 @@ $(document).ready(() => {
         'precio': 430
       }
     },
-    limit: 20, // The max amount of results that camerica-noticias be shown at once. Default: Infinity.
+    limit: 20, // The max amount of results that camérica-noticias be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
     // Callback function when value is autcompleted.
     },
     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
   });
 
-  // autocompletado d programas
+  // autocompletado de programas
 
   $('input.autocomplete-2').autocomplete({
     data: {
       'Al fondo hay sitio': {
         'precio': 2000
       },
-      'America deportes': {
+      'América deportes': {
         'precio': 500
       },
       'Amores de Polo': {
@@ -180,7 +186,7 @@ $(document).ready(() => {
         'precio': 3900
       }
     },
-    limit: 20, // The max amount of results that camerica-noticias be shown at once. Default: Infinity.
+    limit: 20, // The max amount of results that camérica-noticias be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
     // Callback function when value is autcompleted.
     },
@@ -188,7 +194,37 @@ $(document).ready(() => {
   });
 
   // funcionalidad para extraer data a reserve al hacer click en un programa
-  let showDataProgram = () => {
+  let getSchedule = (startTime, endTime) => {
+    let minutes = 0;
+    let hourStart = startTime[0];
+    let hourEnd = endTime[0];
+    minutes += 60 - startTime[1];
+    minutes += ((hourEnd - hourStart) - 1) * 60 ;
+    minutes += endTime[1];
+    let sponsorTotal = minutes / 10;
+    let counterSponsor;
+    for (let timeCounter = startTime[1]; counterSponsor < sponsorTotal; counterSponsor++) {
+      if (timeCounter === 60) {
+        timeCounter = 00;
+        hourCounter += 1;
+      } else if (counterSponsor > 60) {
+        timeCounter = (timeCounter - 60);
+        hourCounter += 1;        
+      }
+      schedulePrograma.push(`${hourStart} : ${timeCounter}`);      
+      timeCounter += 10;
+    }
+    schedulePrograma.push(`${hourStart}:${timeCounter + 10}`);
+  };
+
+  let showPrice = (price) => {
+    
+  };
+
+  let showDataProgram = (schedule, price, name) => {
+    let startTime = schedule[0];
+    let endTime = schedule[1];
+    getSchedule(startTime, endTime);
 
   };
 
@@ -199,29 +235,27 @@ $(document).ready(() => {
   let getDataProgram = (id) => {
     let dataProgramSchedule = firebase.database().ref('programas/' + id + '/horario');
     let dataProgramPrice = firebase.database().ref('programas/' + id + '/precio');
+    // let dataProgramName = firebase.database().ref('programas/' + id + '/name');    
     let schedule;
-    let price;
-
     dataProgramSchedule.on('value', function(snapshot) {
-      console.log(snapshot.val());
       schedule = snapshot.val();
     });
 
     dataProgramPrice.on('value', function(snapshot) {
-      console.log(snapshot.val());
       price = snapshot.val();
     });
-    
-    redirectReserve();
+
+    showDataProgram(schedule, price);
+    // redirectReserve();
   };
 
   let redirectViewReserve = (event) => {
     let idProgram = event.target.id;
     getDataProgram(idProgram);
-    window.location.href('reserve.html');
+    // window.location.href('reserve.html');
   };
 
-  let programs = $('click');
+  let programs = $('.click');
   [programs].forEach(program => {
     program.on('click', redirectViewReserve);
   });

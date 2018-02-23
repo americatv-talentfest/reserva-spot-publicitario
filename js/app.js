@@ -62,7 +62,8 @@ $(document).ready(function() {
     messagingSenderId: '716121533286'
   };
   firebase.initializeApp(config);
-
+  firebase.database();
+  
   // Iniciando autentificación con Google
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().useDeviceLanguage();
