@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,6 @@
   <link rel="stylesheet" href="../css/reserve.css">
   <title>Login</title>
 </head>
-
 <body>
   <nav>
     <div class="nav-wrapper">
@@ -42,7 +40,7 @@
           <input type="text" id="autocomplete-input" class="autocomplete-2" >
           <label for="autocomplete-input">Programa</label>
         </div>
-        <select id="father" class="browser-default margin-bottom" id="day">
+        <select class="browser-default margin-bottom" id="day">
         </select>
         <select class="browser-default margin-bottom" id="hour">
           <option value="" disabled selected>Elige la hora</option>
@@ -51,12 +49,10 @@
           <option value="3">Option 3</option>
         </select>
         <!--boton activador de modal  -->
-        <button class="btn waves-effect waves-light modal-trigger" data-target="reservation-modal" type="submit" name="action">Ver Reserva
-        </button>
+        <button id="reservation-btn" class="btn waves-effect waves-light modal-trigger" data-target="reservation-modal" type="submit" name="action" disabled>Ver Reserva</button>
       </div>
     </div>
   </div>
-
   <!-- Reservation Modal -->
   <div id="reservation-modal" class="modal">
     <div class="modal-content">
@@ -65,20 +61,8 @@
         <select>
           <option value="" disabled selected>Marca o Producto</option>
           <option value="1">${}option>
-
             <option value="2">${}</option>
             <option value="3">${}</option>
-        </select>
-        <label>Materialize Select</label>
-      </div>
-      <div class="input-field col s12">
-        <select>
-          <option value="" disabled selected>Programa</option>
-          <option value="1">${}option>
-
-            <option value="2">${}</option>
-            <option value="3">${}</option>
-        </select>
         <label>Materialize Select</label>
       </div>
       <!-- FECHA -->
@@ -90,12 +74,10 @@
   </div>
   <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="../vendors/materialize/js/materialize.min.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/app.js"></script>
   <script src="../js/reserve.js"></script>
 </body>
-
 </html>

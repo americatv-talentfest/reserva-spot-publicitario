@@ -74,7 +74,7 @@ var programas = {
     'horario': [ [ 7, 0 ], [ 9, 0 ] ],
     'precio': 2900
   },
-  'an-espetaculos': {
+  'an-espectaculos': {
     'horario': [ [ 5, 30 ], [ 6, 30 ] ],
     'precio': 2000
   },

@@ -1,23 +1,35 @@
 $(document).ready(() => {
   $('select').material_select();
   
-  var config = {
-    apiKey: 'AIzaSyANh-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
-    authDomain: 'americatv-246b8.firebaseapp.com',
-    databaseURL: 'https://americatv-246b8.firebaseio.com',
-    projectId: 'americatv-246b8',
-    storageBucket: 'americatv-246b8.appspot.com',
-    messagingSenderId: '716121533286'
-  };
- 
   firebase.database();
   // seleccionando elementos deL DOM
-  let selectHour = $('select#hour');
+  // variables seleccionadoras de los 4 campos de la vista RESERVE.js
+  let verifyReservationBtn = $('#reservation-btn');
+  let brand = $('input.autocomplete');
   let program = $('input.autocomplete-2');
-  let priceProgram;  
+  let dayOfWeek = $('#day');
+  let selectHour = $('select#hour');
+  let verifyBrand = false;
+  let verifyShow = false;
+  let verifyDay = false;
+  let verifyHour = false;
+  
   let scheduleProgram = [];
 
-  // autocompletado de marcas 
+  // funciones de verify boton active
+  function verifyBtnActive() {
+    if (verifyBrand && verifyShow && verifyDay && verifyHour) {
+      verifyReservationBtn.removeAttr('disabled');
+    }
+  }
+
+  function verifyBtnInactive() {
+    verifyReservationBtn.attr('disabled', true); 
+  }
+  
+
+  // validacion de form de reserve html
+  // autocompletado de MARCAS 
   $('input.autocomplete').autocomplete({
     data: {
       'BCP': 'http://www.smartvehicularbcp.com/Images/LogoBCP.png',
@@ -43,45 +55,44 @@ $(document).ready(() => {
     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
   });
 
-  // autocompletado de programas
-
+  // autocompletado de PROGRAMAS
   $('input.autocomplete-2').autocomplete({
     data: {
-      'Al fondo hay sitio': 'http://www.ecuavisa.com/sites/default/files/imagenes/2012/03/21/20120321_fondo1.jpg',
-      'America deportes': 'https://pbs.twimg.com/profile_images/935210757926596609/3SKKg_M5_400x400.jpg',
-      'Amores de Polo': 'http://cde.americatv.com.pe/minisites/los-amores-de-polo-360x227-330599.jpg',
-      'América Noticias edición central': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias edición dominical': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias edición mediodia': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias edición sabado': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias espetaculos': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias matutino': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'América Noticias primera-edicion': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
-      'Automundo': 'http://automundo.pe/wp-content/uploads/2016/12/AMcelebalcn.png',
-      'Butaca América': 'http://cde.americatv.com.pe/americlub-butaca-america-vota-tu-pela-favorita-noticia-67161-588x368-182236.jpg',
-      'Cinescape': 'https://1.bp.blogspot.com/-u0kv_J8StjU/WJYrZUbkhFI/AAAAAAAAICI/EivQsAQCexo7KYsT616NXbb9oeZn07-DgCLcB/s640/cinescape.jpg',
-      'Cuarto Poder': 'http://i.imgur.com/WF5Gk13.png',
-      'Cumbia Pop': 'https://vignette.wikia.nocookie.net/logopedia/images/a/a0/Cumbia_Pop_%28Logo%29.png/revision/latest?cb=20180103222511',
-      'Domingo al día': 'https://lh3.googleusercontent.com/4c9k0_q83FT0_GUYGxFrHgDlYhlb-8BF57a5w9tV_2NYTjEwzMLjCX2t4dBiYEDivHtnAA=s85',
-      'El chavo del ocho': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/El_Chavo_Animado_-_logo.svg/1200px-El_Chavo_Animado_-_logo.svg.png',
-      'En boca de todos': 'https://lh3.googleusercontent.com/0XV4meukgTlBP2Weq9-gYYfBOb87AhN1ExW02KIAXYnuqNN35QxBzNP1O8xvCqM614IGoQ=s85',
-      'Estás en todas': 'https://pbs.twimg.com/profile_images/424559149414752257/2ylBQ4rj_400x400.png',
-      'Esto es guerra': 'http://www.360onlinemedia.com/votos/img/logo.png',
-      'Fútbol en América': 'https://cde.tvgo.pe/minisites/gisela-busca-1140x577-333128.jpg',
-      'Gisela busca el amor': 'https://cde.tvgo.pe/minisites/gisela-busca-1140x577-333128.jpg',
-      'La banda del chino': 'https://3.bp.blogspot.com/-R4d5MBKoDd4/WKKXqmmh_XI/AAAAAAAARPg/mdsgGvULzqkqjBnFMaFOSCuTCFnCwjRygCLcB/s1600/BANDA_DEL_CHINO.jpg',
-      'La previa': 'https://lh3.googleusercontent.com/3touUESJWYQ7udEN0oMLeYgFXeWS864hNktsqtUJi-ZJ9ArytlrwI9md3-_PddnB4Im5cw=s135',
-      'La rosa de Guadalupe': 'http://static.lared.cl/wp-content/uploads/2014/03/la-rosa-de-guadalupe.jpg',
-      'Mujeres sin filtro': 'https://yt3.ggpht.com/a-/AJLlDp2gQWZcQkvywWYlmf73nEQpauDp0zZ2wI9m=s900-mo-c-c0xffffffff-rj-k-no',
-      'Reventonazo de la Chola': 'https://lh3.googleusercontent.com/DQMeN9_n8ttEOnTSjsf8CuoB0E9_UvzBhXhdim_xvnqEBYwjaH5HFzaZ5hXxgss961lb=s132',
-      'Serie solamente Milagros': 'http://1.bp.blogspot.com/-sUmdYxgJeg0/TzbJDXDwPdI/AAAAAAAAAVE/hzo1I9A7aZU/s640/420798_211030012325805_211029732325833_404166_825470147_n.jpg',
-      'TEC': 'https://yt3.ggpht.com/a-/AK162_5AKWWYm8cev-C8ImaavdMjOxc9Zn0eTxYbiw=s900-mo-c-c0xffffffff-rj-k-no',
-      'Telenovela caer en tentación': 'https://i.imgur.com/2LEDqIG.jpg',
-      'Telenovela Colorina': 'http://www.miblogdecineytv.com/wp-content/uploads/2014/03/COLORINA.jpg',
-      'Telenovela Marimar': 'https://vignette.wikia.nocookie.net/telenovelas/images/2/2c/Marimar1.jpg/revision/latest?cb=20130127224736&path-prefix=es',
+      'al-fondo-hay-sitio': 'http://www.ecuavisa.com/sites/default/files/imagenes/2012/03/21/20120321_fondo1.jpg',
+      'america-deportes': 'https://pbs.twimg.com/profile_images/935210757926596609/3SKKg_M5_400x400.jpg',
+      'amores-de-polo': 'http://cde.americatv.com.pe/minisites/los-amores-de-polo-360x227-330599.jpg',
+      'an-edicion-central': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-edicion-dominical': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-edicion-mediodia': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-edicion-sabado': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-espectaculos': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-matutino': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'an-primera-edicion': 'https://lh3.googleusercontent.com/4IQ70pX3sF_yHbLa-hLFqx-To_IHtEmcDUix0-mEA9_NMC1XLbupOxoQa7H9ypfIspkFBsw=s85',
+      'automundo': 'http://automundo.pe/wp-content/uploads/2016/12/AMcelebalcn.png',
+      'butaca-matine': 'http://cde.americatv.com.pe/americlub-butaca-america-vota-tu-pela-favorita-noticia-67161-588x368-182236.jpg',
+      'cinescape': 'https://1.bp.blogspot.com/-u0kv_J8StjU/WJYrZUbkhFI/AAAAAAAAICI/EivQsAQCexo7KYsT616NXbb9oeZn07-DgCLcB/s640/cinescape.jpg',
+      'cuarto-poder': 'http://i.imgur.com/WF5Gk13.png',
+      'cumbia-pop': 'https://vignette.wikia.nocookie.net/logopedia/images/a/a0/Cumbia_Pop_%28Logo%29.png/revision/latest?cb=20180103222511',
+      'domingo-al-dia': 'https://lh3.googleusercontent.com/4c9k0_q83FT0_GUYGxFrHgDlYhlb-8BF57a5w9tV_2NYTjEwzMLjCX2t4dBiYEDivHtnAA=s85',
+      'el-chavo-del-ocho': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/El_Chavo_Animado_-_logo.svg/1200px-El_Chavo_Animado_-_logo.svg.png',
+      'en-boca-de-todos': 'https://lh3.googleusercontent.com/0XV4meukgTlBP2Weq9-gYYfBOb87AhN1ExW02KIAXYnuqNN35QxBzNP1O8xvCqM614IGoQ=s85',
+      'estas-en-todas': 'https://pbs.twimg.com/profile_images/424559149414752257/2ylBQ4rj_400x400.png',
+      'esto-es-guerra': 'http://www.360onlinemedia.com/votos/img/logo.png',
+      'futbol-en-america': 'https://cde.tvgo.pe/minisites/gisela-busca-1140x577-333128.jpg',
+      'gisela-busca-el-amor': 'https://cde.tvgo.pe/minisites/gisela-busca-1140x577-333128.jpg',
+      'la-banda-del-chino': 'https://3.bp.blogspot.com/-R4d5MBKoDd4/WKKXqmmh_XI/AAAAAAAARPg/mdsgGvULzqkqjBnFMaFOSCuTCFnCwjRygCLcB/s1600/BANDA_DEL_CHINO.jpg',
+      'la-previa': 'https://lh3.googleusercontent.com/3touUESJWYQ7udEN0oMLeYgFXeWS864hNktsqtUJi-ZJ9ArytlrwI9md3-_PddnB4Im5cw=s135',
+      'la-rosa-de-guadalupe': 'http://static.lared.cl/wp-content/uploads/2014/03/la-rosa-de-guadalupe.jpg',
+      'mujeres-sin-filtro': 'https://yt3.ggpht.com/a-/AJLlDp2gQWZcQkvywWYlmf73nEQpauDp0zZ2wI9m=s900-mo-c-c0xffffffff-rj-k-no',
+      'reventonazo-de-la-chola': 'https://lh3.googleusercontent.com/DQMeN9_n8ttEOnTSjsf8CuoB0E9_UvzBhXhdim_xvnqEBYwjaH5HFzaZ5hXxgss961lb=s132',
+      'serie-solamente-milagros': 'http://1.bp.blogspot.com/-sUmdYxgJeg0/TzbJDXDwPdI/AAAAAAAAAVE/hzo1I9A7aZU/s640/420798_211030012325805_211029732325833_404166_825470147_n.jpg',
+      'tec': 'https://yt3.ggpht.com/a-/AK162_5AKWWYm8cev-C8ImaavdMjOxc9Zn0eTxYbiw=s900-mo-c-c0xffffffff-rj-k-no',
+      'tn-caer-en-tentacion': 'https://i.imgur.com/2LEDqIG.jpg',
+      'tn-colorina': 'http://www.miblogdecineytv.com/wp-content/uploads/2014/03/COLORINA.jpg',
+      'tn-marimar': 'https://vignette.wikia.nocookie.net/telenovelas/images/2/2c/Marimar1.jpg/revision/latest?cb=20130127224736&path-prefix=es',
       'Telenovela ojitos hechiceros': 'https://cde.americatv.com.pe/minisites/ojitos-hechiceros-360x227-333023.jpg',
-      'Telenovela privilegio de amar': 'https://upload.wikimedia.org/wikipedia/en/d/de/Epda.jpg',
-      'Ven baile quinceañera': 'https://seriesblanco.com/files/uploads/3288.jpg'
+      'tn-privilegio-de-amar': 'https://upload.wikimedia.org/wikipedia/en/d/de/Epda.jpg',
+      'vbq': 'https://seriesblanco.com/files/uploads/3288.jpg'
     },
     limit: 20, // The max amount of results that camérica-noticias be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
@@ -91,6 +102,7 @@ $(document).ready(() => {
   });
 
   // funcionalidad para extraer data a reserve al hacer click en un programa
+  // funcionalidad de HORA 
   let getSchedule = (startTime, endTime) => {
     let minutes = 0;
     let hourStart = startTime[0];
@@ -117,10 +129,9 @@ $(document).ready(() => {
     let startTime = schedule[0];
     let endTime = schedule[1];
     let optionHour;
-    debugger;
+    
     getSchedule(startTime, endTime);
-    // program.val(name);
-   
+    
     selectHour.html('<option value="" disabled selected>Elige la hora</option>');
     scheduleProgram.forEach((element, index) => {
       optionHour += `<option value="${index}">${element}</option>`;
@@ -128,16 +139,11 @@ $(document).ready(() => {
     selectHour.append(optionHour);   
   };
 
-  function redirectReserve() {
-    window.location.href = 'reserve.html';
-  }
-
+  // funcionalidad de TARIFA
   let dataProgramPrice; 
   let getDataProgram = (id) => {
     program.val(id);
     program.prop('disabled', 'disabled');
-    
-
     let dataProgramSchedule = programas[id].horario;
 
     dataProgramPrice = programas[id].precio;
@@ -156,22 +162,81 @@ $(document).ready(() => {
   });
 
 
-  var meses = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
   var diasSemana = new Array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
   var f = new Date();
   var day = f.getDay();
 
-  let opction = '';
-  $('#father').html('<option value= \'disabled selected\'>Elige el día</option>');
+  let option = '';
+  dayOfWeek.html('<option value= \'disabled selected\'>Elige el día</option>');
 
   for (var i = day; i < diasSemana.length; i++) {
     opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
-    $('#father').append(opction);
+    dayOfWeek.append(option);
   }
   var tomDay = diasSemana[f.getDay() + 1];
   var tomDay1 = diasSemana[f.getDay() - 4];
   var tomDay2 = diasSemana[f.getDay() - 3];
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
+
+  // funciones
+  // shows
+  // console.log(program.val());
+  var showName = program.val();
+  var showNameArray = Object.keys(programas);
+  for (i = 0; i < showNameArray.length; i++) {
+    // console.log(Object.keys(programas)[i]);
+    if (showName === showNameArray[i]) {
+      verifyShow = true;
+      verifyBtnActive();
+    } else {
+      verifyBtnInactive();
+    }
+  }
+
+  // marcas
+  brand.on('input', inputBrandInput);
+
+  function inputBrandInput() {
+    // console.log(marcas);
+    for (i = 0; i < Object.keys(marcas).length; i++) {
+      var brandName = Object.keys(marcas)[i];
+      // console.log(brandName);
+      if (brandName[i] === brand) {
+        verifyBrand = true;
+        verifyBtnActive();
+      } else {
+        verifyBtnInactive();
+      }
+    }
+  }
+
+  // hora
+  selectHour.on('input', function() {
+    console.log(selectHour.val());
+    if (selectHour.val()) {
+      verifyHour = true;
+      verifyBtnActive();
+    } else {
+      verifyBtnInactive();
+    }
+  });
+
+  // dias
+  dayOfWeek.on('input', function() {
+    if (dayOfWeek.val()) {
+      verifyDay = true;
+      verifyBtnActive();
+    } else {
+      verifyBtnInactive();
+    }
+  });
+
+  // modalt trigger
   $('#reservation-modal').modal();
+
+  // redireccionamiento de boton a siguiente vista
+  function redirectReserve() {
+    window.location.href = 'reserve.html';
+  }
 });
