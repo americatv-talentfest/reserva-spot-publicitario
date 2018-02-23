@@ -91,7 +91,9 @@ $(document).ready(() => {
   });
 
   // funcionalidad para extraer data a reserve al hacer click en un programa
+
   let getSchedule = (startTime, endTime) => {
+    debugger
     let minutes = 0;
     let hourStart = startTime[0];
     let hourEnd = endTime[0];
@@ -100,13 +102,17 @@ $(document).ready(() => {
     minutes += endTime[1];
     let sponsorTotal = minutes / 10;
     let counterSponsor = 0;
-    for (let timeCounter = startTime[1]; counterSponsor < sponsorTotal; counterSponsor++) {
+    for (let timeCounter = startTime[1]+10; counterSponsor < sponsorTotal-1; counterSponsor++) {
+      debugger
       if (timeCounter === 60) {
         timeCounter = 00;
-        hourCounter += 1;
-      } else if (counterSponsor > 60) {
+        hourStart += 1;
+      } else if (timeCounter > 60) {
         timeCounter = (timeCounter - 60);
-        hourCounter += 1;        
+        hourStart += 1;        
+      }
+      if(hourStart===24){
+        hourStart= 00;
       }
       scheduleProgram.push(`${hourStart} : ${timeCounter}`);      
       timeCounter += 10;
@@ -117,7 +123,7 @@ $(document).ready(() => {
     let startTime = schedule[0];
     let endTime = schedule[1];
     let optionHour;
-    debugger;
+    
     getSchedule(startTime, endTime);
     // program.val(name);
    
@@ -161,16 +167,14 @@ $(document).ready(() => {
   var f = new Date();
   var day = f.getDay();
 
-  let opction = '';
+  let option = '';
   $('#father').html('<option value= \'disabled selected\'>Elige el día</option>');
 
   for (var i = day; i < diasSemana.length; i++) {
-    opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
-    $('#father').append(opction);
+    option = ` <option value= "${i}">${diasSemana[i]}</option>`;
+    $('#father').append(option);
   }
-  var tomDay = diasSemana[f.getDay() + 1];
-  var tomDay1 = diasSemana[f.getDay() - 4];
-  var tomDay2 = diasSemana[f.getDay() - 3];
+
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
   $('#reservation-modal').modal();
