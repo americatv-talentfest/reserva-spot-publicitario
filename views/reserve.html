@@ -10,9 +10,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/reserve.css">
-  <title>Login</title>
+  <title>Reserve</title>
 </head>
-
 <body>
   <nav>
     <div class="nav-wrapper">
@@ -42,14 +41,36 @@
           <input type="text" id="autocomplete-input" class="autocomplete-2" id="program">
           <label for="autocomplete-input">Programa</label>
         </div>
-        <select id="father" class="browser-default margin-bottom" id="day">
-        </select>
-        <select  class="browser-default margin-bottom" id="hour">
+        <div class="input-field col s12">
+          <select>
+              <option value="" disabled selected>Selecciona</option>
+              <option value="1">Lunes 26</option>
+              <option value="2">Martes 27</option>
+              <option value="3">Miércoles 28</option>
+              <option value="4">Jueves 1</option>
+              <option value="5">Viernes 2</option>
+              <option value="6">Sábado 3</option>
+              <option value="7">Domingo 4</option>
+          </select>
+          <label>Fecha</label>
+        </div>
+        <!-- <select id="father" class="browser-default margin-bottom" id="day">
+        </select> -->
+        <div class="input-field col s12">
+              <select>
+                  <option value="" disabled selected>Selecciona</option>
+                  <option value="1">Opcion 1</option>
+                  <option value="2">Opcion 2</option>
+                  <option value="3">Opcion 3</option>
+              </select>
+              <label>Hora</label>
+        </div>
+        <!-- <select  class="browser-default margin-bottom" id="hour">
           <option value="" disabled selected>Elige la hora</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
           <option value="3">Option 3</option>
-        </select>
+        </select> -->
         <!--boton activador de modal  -->
         <button class="btn waves-effect waves-light modal-trigger" data-target="reservation-modal" type="submit" name="action">Ver Reserva
         </button>
