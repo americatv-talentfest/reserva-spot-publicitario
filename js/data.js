@@ -79,11 +79,11 @@ var programas = {
     'precio': 2000
   },
   'an-matutino': {
-    'horario': [ [ 6, 30 ], [ 7, 0 ] ],
+    'horario': [ [ 6, 30 ], [ 7, 00 ] ],
     'precio': 2000
   },
   'an-primera-edicion': {
-    'horario': [ [ 5, 16 ], [9,0 ]],
+    'horario': [ [ 5, 16 ], [9,00 ]],
     'precio': 2500
   },
   'antesala': {
@@ -91,19 +91,19 @@ var programas = {
     'precio': 600
   },
   'automundo': {
-    'horario': [ [ 5, 16 ], [ 6, 0 ] ],
+    'horario': [ [ 5, 16 ], [ 6, 00 ] ],
     'precio': 2
   },
   'butaca-domingo': {
-    'horario': [ [ 16, 0 ], [ 18, 0 ] ],
+    'horario': [ [ 16, 00 ], [ 18, 00 ] ],
     'precio': 2000
   },
   'butaca-matine': {
-    'horario': [ [ 14, 30 ], [ 16, 0 ] ],
+    'horario': [ [ 14, 30 ], [ 16, 00 ] ],
     'precio': 1800
   },
   'butaca-sabado': {
-    'horario': [ [ 15, 0 ], [ 17, 0 ] ],
+    'horario': [ [ 15, 00 ], [ 17, 00 ] ],
     'precio': 1800
   },
   'champios': {
@@ -111,11 +111,11 @@ var programas = {
     'precio': 3500
   },
   'cinescape': {
-    'horario': [ [ 11, 0 ], [ 12, 0 ] ],
+    'horario': [ [ 11, 00 ], [ 12, 00 ] ],
     'precio': 3300
   },
   'cuarto-poder': {
-    'horario': [ [ 20, 0 ], [ 22, 0 ] ],
+    'horario': [ [ 20, 00 ], [ 22, 00 ] ],
     'precio': 3900
   },
   'cumbia-pop': {
@@ -123,7 +123,7 @@ var programas = {
     'precio': 3100
   },
   'domingo-al-dia': {
-    'horario': [ [ 8, 30 ], [ 11, 0 ] ],
+    'horario': [ [ 8, 30 ], [ 11, 00 ] ],
     'precio': 2900
   },
   'el-chavo-del-ocho': {
@@ -131,11 +131,11 @@ var programas = {
     'precio': 1500
   },
   'en-boca-de-todos': {
-    'horario': [ [ 14, 30 ], [ 16, 0 ] ],
+    'horario': [ [ 14, 30 ], [ 16, 00 ] ],
     'precio': 3400
   },
   'estas-en-todas': {
-    'horario': [ [ 9, 0 ], [ 11, 0 ] ],
+    'horario': [ [ 9, 00 ], [ 11, 00 ] ],
     'precio': 2800
   },
   'esto-es-guerra': {
@@ -143,63 +143,63 @@ var programas = {
     'precio': 4000
   },
   'futbol-en-america': {
-    'horario': [ [ 22, 30 ], [ 12, 0 ] ],
+    'horario': [ [ 22, 30 ], [ 24, 00 ] ],
     'precio': 3500
   },
   'gisela-busca-el-amor': {
-    'horario': [ [ 22, 0 ], [ 23, 0 ] ],
+    'horario': [ [ 22, 00 ], [ 23, 00 ] ],
     'precio': 2100
   },
   'la-banda-del-chino': {
-    'horario': [ [ 23, 30 ], [ 0, 30 ] ],
+    'horario': [ [ 23, 30 ], [ 24, 30 ] ],
     'precio': 3700
   },
   'la-previa': {
-    'horario': [ [ 19, 0 ], [ 20, 0 ] ],
+    'horario': [ [ 19, 00 ], [ 20, 00 ] ],
     'precio': 2600
   },
   'la-rosa-de-guadalupe': {
-    'horario': [ [ 17, 0 ], [ 18, 25 ] ],
+    'horario': [ [ 17, 00 ], [ 18, 25 ] ],
     'precio': 2000
   },
   'mujeres-sin-filtro': {
-    'horario': [ [ 23, 0 ], [ 12, 0 ] ],
+    'horario': [ [ 23, 00 ], [ 24, 00 ] ],
     'precio': 2100
   },
   'reventonazo-de-la-chola': {
-    'horario': [ [ 20, 0 ], [ 22, 0 ] ],
+    'horario': [ [ 20, 00 ], [ 22, 00 ] ],
     'precio': 2600
   },
   'serie-solamente-milagros': {
-    'horario': [ [ 13, 0 ], [ 14, 0 ] ],
+    'horario': [ [ 13, 00 ], [ 14, 00 ] ],
     'precio': 900
   },
   'tec': {
-    'horario': [ [ 11, 0 ], [ 12, 0 ] ],
+    'horario': [ [ 11, 00 ], [ 12, 00 ] ],
     'precio': 3400
   },
   'tn-caer-en-tentacion': {
-    'horario': [ [ 16, 0 ], [ 17, 0 ] ],
+    'horario': [ [ 16, 00 ], [ 17, 00 ] ],
     'precio': 700
   },
   'tn-colorina': {
-    'horario': [ [ 21, 30 ], [ 22, 0 ] ],
+    'horario': [ [ 21, 30 ], [ 22, 00 ] ],
     'precio': 4000
   },
   'tn-marimar': {
-    'horario': [ [ 10, 15 ], [ 11, 0 ] ],
+    'horario': [ [ 10, 15 ], [ 11, 00 ] ],
     'precio': 700
   },
   'tn-ojitos-hechiceros': {
-    'horario': [ [ 21, 30 ], [ 22, 0 ] ],
+    'horario': [ [ 21, 30 ], [ 22, 00 ] ],
     'precio': 3900
   },
   'tn-privilegio-de-amar': {
-    'horario': [ [ 21, 30 ], [ 22, 0 ] ],
+    'horario': [ [ 21, 30 ], [ 22, 00 ] ],
     'precio': 800
   },
   'vbq': {
-    'horario': [ [ 20, 30 ], [ 21, 0 ] ],
+    'horario': [ [ 20, 30 ], [ 21, 00 ] ],
     'precio': 3900
   }
 };
