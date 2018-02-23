@@ -144,22 +144,23 @@ $(document).ready(() => {
   [programs].forEach(program => {
     program.on('click', redirectViewReserve);
   });
+
+
+  // var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+  var diasSemana = new Array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
+  var f = new Date();
+  var day = f.getDay();
+
+  let opction = '';
+  $('#father').html('<option value= \'disabled selected\'>Elige el día</option>');
+
+  for (var i = day; i < diasSemana.length; i++) {
+    opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
+    $('#father').append(opction);
+  }
+  var tomDay = diasSemana[f.getDay() + 1];
+  var tomDay1 = diasSemana[f.getDay() - 4];
+  var tomDay2 = diasSemana[f.getDay() - 3];
+
+  $('#reservation-modal').modal();
 });
-// });
-
-  
-// var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-var diasSemana = new Array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
-var f = new Date();
-var day = f.getDay();
-
-let opction = '';
-$('#father').html('<option value= \'disabled selected\'>Elige el día</option>');
-
-for (var i = day; i < diasSemana.length; i++) {
-  opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
-  $('#father').append(opction);
-}
-var tomDay = diasSemana[f.getDay() + 1];
-var tomDay1 = diasSemana[f.getDay() - 4];
-var tomDay2 = diasSemana[f.getDay() - 3];

@@ -51,13 +51,25 @@
           <option value="3">Option 3</option>
         </select>
         <!--boton activador de modal  -->
-        <button class="btn waves-effect deep-orange accent-3" type="submit" name="action">Ver Reserva
+        <button class="btn waves-effect waves-light modal-trigger" data-target="reservation-modal" type="submit" name="action">Ver Reserva
           <i class="material-icons right">send</i>
         </button>
       </div>
     </div>
 
   </div>
+
+  <!-- Reservation Modal -->
+  <div id="reservation-modal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="home.html" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
   <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
