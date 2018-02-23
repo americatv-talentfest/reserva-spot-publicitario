@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="vendors/materialize/css/materialize.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/reserva.css">
   <title>Login</title>
 </head>
 
@@ -39,8 +40,24 @@
         </div>
         <div class="input-field col s12">
           <input type="text" id="autocomplete-input" class="autocomplete-2">
-          <label for="autocomplete-input">Marca o Producto</label>
+          <label for="autocomplete-input">Programa</label>
         </div>
+        <select class="browser-default margin-bottom" id="day">
+          <option value="" disabled selected>Elige el día</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <select class="browser-default margin-bottom" id="hour">
+          <option value="" disabled selected>Elige la hora</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <!--boton activador de modal  -->
+        <button class="btn waves-effect waves-light" type="submit" name="action">Ver Reserva
+          <i class="material-icons right">send</i>
+        </button>
       </div>
     </div>
 

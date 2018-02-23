@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $(document).ready(() => {
-  // autocompletado de marcas materialize 
+  // autocompletado de marcas 
   $('input.autocomplete').autocomplete({
     data: {
       "BCP": {
@@ -69,7 +69,7 @@ $(document).ready(() => {
     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
   });
 
-  // autocompletado d programas materialize
+  // autocompletado d programas
 
   $('input.autocomplete-2').autocomplete({
     data: {
