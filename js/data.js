@@ -45,6 +45,7 @@ var marcas = {
     'precio': 430
   }
 };
+
 var programas = {
   'al-fondo-hay-sitio': {
     'horario': [ [ 2, 30 ], [ 4, 0 ] ],
@@ -83,7 +84,7 @@ var programas = {
     'precio': 2000
   },
   'an-primera-edicion': {
-    'horario': [ [ 5, 16 ], [9,0 ]],
+    'horario': [ [ 5, 16 ], [9, 0 ]],
     'precio': 2500
   },
   'antesala': {
