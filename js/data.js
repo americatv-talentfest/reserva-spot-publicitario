@@ -83,7 +83,7 @@ var programas = {
     'precio': 2000
   },
   'an-primera-edicion': {
-    'horario': [ [ 5, 16 ], 9 ],
+    'horario': [ [ 5, 16 ], [9,0 ]],
     'precio': 2500
   },
   'antesala': {
@@ -95,7 +95,7 @@ var programas = {
     'precio': 2
   },
   'butaca-domingo': {
-    'horario': [ [ 16, 0 ], [ 18, '00' ] ],
+    'horario': [ [ 16, 0 ], [ 18, 0 ] ],
     'precio': 2000
   },
   'butaca-matine': {
