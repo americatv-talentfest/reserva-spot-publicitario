@@ -70,15 +70,15 @@ $(document).ready(() => {
   let scheduleProgram = [];
 
   // funciones de verify boton active
-  function verifyBtnActive() {
-    if (verifyBrand && verifyShow && verifyDay && verifyHour) {
-      verifyReservationBtn.removeAttr('disabled');
-    }
-  }
+  // function verifyBtnActive() {
+  //   if (verifyBrand && verifyShow && verifyDay && verifyHour) {
+  //     verifyReservationBtn.removeAttr('disabled');
+  //   }
+  // }
 
-  function verifyBtnInactive() {
-    verifyReservationBtn.attr('disabled', true); 
-  }
+  // function verifyBtnInactive() {
+  //   verifyReservationBtn.attr('disabled', true); 
+  // }
   
 
   // validacion de form de reserve html
@@ -156,7 +156,7 @@ $(document).ready(() => {
 
   // funcionalidad para extraer data a reserve al hacer click en un programa
   let getSchedule = (startTime, endTime) => {
-    debugger
+
     let minutes = 0;
     let hourStart = startTime[0];
     let hourEnd = endTime[0];
@@ -166,7 +166,7 @@ $(document).ready(() => {
     let sponsorTotal = minutes / 10;
     let counterSponsor = 0;
     for (let timeCounter = startTime[1]+10; counterSponsor < sponsorTotal-1; counterSponsor++) {
-      debugger
+      
       if (timeCounter === 60) {
         timeCounter = 00;
         hourStart += 1;
@@ -196,30 +196,31 @@ $(document).ready(() => {
     selectHour.append(optionHour);   
   };
 
-  // funcionalidad de TARIFA
-  let dataProgramPrice; 
-  let getDataProgram = (id) => {
-    program.val(id);
-    program.prop('disabled', 'disabled');
+  // funcionalidad de TARIFA 
+  // let getDataProgram = (id) => {
+  //   program.val(id);
+  //   program.prop('disabled', 'disabled');
 
+  // }
   // obtiene precio
   let rode;   
   let fee;
-  let getPrice = () => {
+  let getPrice = (marca) => {
+   
     var createDate = new Date(); 
     let timeOfTheDay = createDate.getHours();
-    rode = (dataProgramPrice + marcas[nombrevar()].price);    
-    if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
-      fee = 0.00;
-    } else if (timeOfTheDay > 12 && timeOfTheDay <= 4) {
-      fee = (rode * 5 / 100);
-    } else if (timeOfTheDay > 16 || timeOfTheDay <= 8) {
-      fee = (rode * 15 / 100);
-    }
+    console.log(marcas[marca].precio)
+    // rode = (dataProgramPrice + marcas[marca].precio);    
+    // if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
+    //   fee = 0.00;
+    // } else if (timeOfTheDay > 12 && timeOfTheDay <= 4) {
+    //   fee = (rode * 5 / 100);
+    // } else if (timeOfTheDay > 16 || timeOfTheDay <= 8) {
+    //   fee = (rode * 15 / 100);
+    // }
   };
 
-  // temina obtnener monto
-
+  // temina obtener monto
   function redirectReserve() {
     window.location.href = 'reserve.html';
   }
@@ -233,6 +234,8 @@ $(document).ready(() => {
     dataProgramPrice = programas[id].precio;
     
     showDataProgram(dataProgramSchedule);
+    
+    verifyShow = true;
   };
 
   let redirectViewReserve = (event) => {
@@ -254,15 +257,16 @@ $(document).ready(() => {
 
   dayOfWeek.html('<option value= \'disabled selected\'>Elige el día</option>');
 
-  for (var i = day; i < diasSemana.length; i++) {
-    opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
-    dayOfWeek.append(option);
+  // for (var i = day; i < diasSemana.length; i++) {
+  //   opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
+  //   // dayOfWeek.append(option);
+  // }
 
-  $('#father').html('<option value= \'disabled selected\'>Elige el día</option>');
+  dayOfWeek.html('<option value= \'disabled selected\'>Elige el día</option>');
 
   for (var i = day; i < diasSemana.length; i++) {
     option = ` <option value= "${i}">${diasSemana[i]}</option>`;
-    $('#father').append(option);
+    dayOfWeek.append(option);
   }
 
   let idsession = sessionStorage.idProgram;
@@ -270,54 +274,65 @@ $(document).ready(() => {
 
   // funciones
   // shows
-  // console.log(program.val());
-  var showName = program.val();
-  var showNameArray = Object.keys(programas);
-  for (i = 0; i < showNameArray.length; i++) {
-    // console.log(Object.keys(programas)[i]);
-    if (showName === showNameArray[i]) {
-      verifyShow = true;
-      verifyBtnActive();
-    } else {
-      verifyBtnInactive();
-    }
-  }
+  // program.on('input', function(){
+  //    // console.log(program.val());
+  //   var showName = program.val();
+  //   var showNameArray = Object.keys(programas);
+  //   for (i = 0; i < showNameArray.length; i++) {
+  //     // console.log(Object.keys(programas)[i]);
+  //     if (showName === showNameArray[i]) {
+  //       verifyShow = true;
+  //       verifyBtnActive();
+  //     } else {
+  //       verifyShow = false;
+  //       verifyBtnInactive();
+  //     }
+  //   }
+  // })
 
   // marcas
   brand.on('input', inputBrandInput);
 
   function inputBrandInput() {
     // console.log(marcas);
+    // debugger
     for (i = 0; i < Object.keys(marcas).length; i++) {
       var brandName = Object.keys(marcas)[i];
       // console.log(brandName);
-      if (brandName[i] === brand) {
+      if (brandName[i] === brand.val()) {
         verifyBrand = true;
-        verifyBtnActive();
+        // verifyBtnActive();
       } else {
-        verifyBtnInactive();
+        verifyBrand = false;
+        // verifyBtnInactive();
+        
       }
     }
   }
 
   // hora
-  // selectHour.on('input', function() {
-  //   console.log(selectHour.val());
-  //   if (selectHour.val()) {
-  //     verifyHour = true;
-  //     verifyBtnActive();
-  //   } else {
-  //     verifyBtnInactive();
-  //   }
-  // });
+  selectHour.on('change', function() {
+    // debugger
+    console.log(selectHour.val());
+    if (selectHour.val()) {
+      verifyHour = true;
+      // verifyBtnActive();
+    } else {
+      verifyHour = false;
+      // verifyBtnInactive();
+    }
+  });
 
   // dias
-  dayOfWeek.on('input', function() {
+  dayOfWeek.on('change', function() {
+    // debugger
+    console.log(dayOfWeek.val())
     if (dayOfWeek.val()) {
       verifyDay = true;
-      verifyBtnActive();
+      // verifyBtnActive();
     } else {
-      verifyBtnInactive();
+      verifyDay = false;
+      // verifyBtnInactive();
     }
   });
 
@@ -329,28 +344,35 @@ $(document).ready(() => {
     window.location.href = 'reserve.html';
   }
 
+
   verifyReservationBtn.on('click', triggerConfirmModal);
 
   function triggerConfirmModal() {
+   
     var confirmationModal = '';
     confirmationModal +=`
-    <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
+    <div class="row">
+    <div class="col offset-l4 l4">
+      <h4 class="font-color-2">Datos de Reserva</h4>
+      <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
+      <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
+        <p class="font-color">Fecha : 24 de Febrero 2018</p>
+         <p class="font-color"> Hora:<span id="mdhour">6.30pm</span></h4>
+         <p class="font-color"> Monto : <span>$ 1000</span></p>
+         <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
+         </div>
+         </div>
     `
+    $('.modal-content').html(confirmationModal)
   }
-
+$('#reservation-btn').on('click', function(e){
+  e.preventDefault();
+  
+})
   $(document).on('change', '#hour', function(event) {
     $('#hour option:selected').prop('disabled', 'disabled');
     $('#confirm').on('click', function() {
       sessionStorage.idHour = ($('#hour option:selected ').val());
-      
     });
   });
 });

@@ -123,6 +123,14 @@ body{
   font-size: 12px;
 }
 
+.font-color span {
+  color: #000;
+}
+
+.font-color-2{
+  color: #FF5000;
+}
+
 /*medias*/
 @media only screen and (min-width: 993px){
 .row .col.l1 {
