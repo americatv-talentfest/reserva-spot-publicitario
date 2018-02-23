@@ -1,4 +1,15 @@
+
 $(document).ready(function() {
+  var config = {
+    apiKey: 'AIzaSyANh-Nq_-W7F35owm6gFw3vH9f6p1AiHuw',
+    authDomain: 'americatv-246b8.firebaseapp.com',
+    databaseURL: 'https://americatv-246b8.firebaseio.com',
+    projectId: 'americatv-246b8',
+    storageBucket: 'americatv-246b8.appspot.com',
+    messagingSenderId: '716121533286'
+  };
+  firebase.initializeApp(config);
+  
   // declaramos variables
   var $loginBtn = $('#login-btn');
   var $googleLogin = $('#login-google');
@@ -105,4 +116,4 @@ $(document).ready(function() {
       console.log(error);
     });
   });
-});
+})
