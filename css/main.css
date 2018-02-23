@@ -1,9 +1,14 @@
 *{
-  /*outline: 2px solid red;*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 body{
-  
+  background-image: url(../assets/images/fondos-03.png);
+  background-size: cover;
 }
+
 .logo{
   height: 60px;
   width: 60px;
@@ -32,3 +37,26 @@ body{
    font-size: 18px;
    color: #fff;
 }
+h2{
+  font-family: 'Patua One', cursive;
+  color: #FF5000;
+}
+
+.modal-trigger{
+  background-color: #FF5000;
+}
+
+@media (min-width: 600px){
+  body{
+    background-image: url(../assets/images/fondos-02.png);
+    background-size: cover;
+  }
+}
+@media (min-width: 992px){
+  body{
+    background-image: url(../assets/images/fondos-01.png);
+    background-size: cover;
+  }
+}
+
+

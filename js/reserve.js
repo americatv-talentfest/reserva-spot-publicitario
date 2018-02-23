@@ -1,4 +1,9 @@
 $(document).ready(() => {
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
   // seleccionando elementos deL DOM
   let selectHour = $('select#hour');
   let program = $('input#program');
