@@ -1,6 +1,7 @@
 *{
  
   font-family: 'Roboto', sans-serif;
+  color: white;
 }
 body{
   background-image: url(../assets/images/fondos-03.png);
@@ -13,6 +14,9 @@ body{
   display: inline-block;
   padding: 5px;
 }
+
+/*estilos a nav*/
+
 .nav-wrapper{
   background: #FF5000;
 }
@@ -56,9 +60,27 @@ body{
   height:9.09090909090909%;
   border: 1px solid black;
 }
+/*estilos a home*/
+#week{
+  color: black;
+}
+
+#week option{
+  color: black;
+}
+
+.foo{
+  outline: 1px solid red;
+}
+
+.general .col-general{
+  padding: 0 0.2rem;
+}
+
+/*medias*/
 @media only screen and (min-width: 993px){
 .row .col.l1 {
-    width: 11.5%;
+    width: 12%;
 }
 }
 p{
