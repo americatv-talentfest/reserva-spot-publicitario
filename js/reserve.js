@@ -60,7 +60,7 @@ $(document).ready(() => {
   let dayOfWeek = $('#day');
   let selectHour = $('select#hour');
   let verifyBrand = false;
-  let verifyShow = false;
+  // let verifyShow = false;
   let verifyDay = false;
   let verifyHour = false;
   
@@ -70,15 +70,15 @@ $(document).ready(() => {
   let scheduleProgram = [];
 
   // funciones de verify boton active
-  // function verifyBtnActive() {
-  //   if (verifyBrand && verifyShow && verifyDay && verifyHour) {
-  //     verifyReservationBtn.removeAttr('disabled');
-  //   }
-  // }
+  function verifyBtnActive() {
+    if (verifyBrand && verifyHour && verifyDay) {
+      verifyReservationBtn.removeAttr('disabled');
+    }
+  }
 
-  // function verifyBtnInactive() {
-  //   verifyReservationBtn.attr('disabled', true); 
-  // }
+  function verifyBtnInactive() {
+    verifyReservationBtn.attr('disabled', true); 
+  }
   
 
   // validacion de form de reserve html
@@ -272,67 +272,43 @@ $(document).ready(() => {
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
 
-  // funciones
-  // shows
-  // program.on('input', function(){
-  //    // console.log(program.val());
-  //   var showName = program.val();
-  //   var showNameArray = Object.keys(programas);
-  //   for (i = 0; i < showNameArray.length; i++) {
-  //     // console.log(Object.keys(programas)[i]);
-  //     if (showName === showNameArray[i]) {
-  //       verifyShow = true;
-  //       verifyBtnActive();
-  //     } else {
-  //       verifyShow = false;
-  //       verifyBtnInactive();
-  //     }
-  //   }
-  // })
-
-  // marcas
-  brand.on('input', inputBrandInput);
+  // validando eleccion de la marca
+  brand.on('change', inputBrandInput);
 
   function inputBrandInput() {
-    // console.log(marcas);
-    // debugger
-    for (i = 0; i < Object.keys(marcas).length; i++) {
-      var brandName = Object.keys(marcas)[i];
-      // console.log(brandName);
-      if (brandName[i] === brand.val()) {
+    console.log(marcas);
+    console.log(Object.keys(marcas));
+      if (brand.val()) {
         verifyBrand = true;
-        // verifyBtnActive();
+        verifyBtnActive();
       } else {
         verifyBrand = false;
-        // verifyBtnInactive();
-        
-      }
+        verifyBtnInactive();
     }
   }
+  // $( "#myselect option:selected" ).text();
 
-  // hora
-  selectHour.on('change', function() {
-    // debugger
-    console.log(selectHour.val());
-    if (selectHour.val()) {
-      verifyHour = true;
-      // verifyBtnActive();
-    } else {
-      verifyHour = false;
-      // verifyBtnInactive();
-    }
-  });
-
-  // dias
+  // validando eleccion del día
   dayOfWeek.on('change', function() {
-    // debugger
     console.log(dayOfWeek.val())
     if (dayOfWeek.val()) {
       verifyDay = true;
-      // verifyBtnActive();
+      verifyBtnActive();
     } else {
       verifyDay = false;
-      // verifyBtnInactive();
+      verifyBtnInactive();
+    }
+  });
+
+  // validando eleccion de la hora
+  selectHour.on('change', function() {
+    console.log(selectHour.val());
+    if (selectHour.val()) {
+      verifyHour = true;
+      verifyBtnActive();
+    } else {
+      verifyHour = false;
+      verifyBtnInactive();
     }
   });
 
