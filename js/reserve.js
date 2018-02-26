@@ -60,7 +60,7 @@ $(document).ready(() => {
   let dayOfWeek = $('#day');
   let selectHour = $('select#hour');
   let verifyBrand = false;
-  let verifyShow = false;
+  // let verifyShow = false;
   let verifyDay = false;
   let verifyHour = false;
   
@@ -68,18 +68,6 @@ $(document).ready(() => {
   let dataProgramPrice;  
 
   let scheduleProgram = [];
-
-  // funciones de verify boton active
-  // function verifyBtnActive() {
-  //   if (verifyBrand && verifyShow && verifyDay && verifyHour) {
-  //     verifyReservationBtn.removeAttr('disabled');
-  //   }
-  // }
-
-  // function verifyBtnInactive() {
-  //   verifyReservationBtn.attr('disabled', true); 
-  // }
-  
 
   // validacion de form de reserve html
   // autocompletado de MARCAS 
@@ -255,8 +243,6 @@ $(document).ready(() => {
 
   let option = '';
 
-  dayOfWeek.html('<option value= \'disabled selected\'>Elige el día</option>');
-
   // for (var i = day; i < diasSemana.length; i++) {
   //   opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
   //   // dayOfWeek.append(option);
@@ -272,67 +258,54 @@ $(document).ready(() => {
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
 
-  // funciones
-  // shows
-  // program.on('input', function(){
-  //    // console.log(program.val());
-  //   var showName = program.val();
-  //   var showNameArray = Object.keys(programas);
-  //   for (i = 0; i < showNameArray.length; i++) {
-  //     // console.log(Object.keys(programas)[i]);
-  //     if (showName === showNameArray[i]) {
-  //       verifyShow = true;
-  //       verifyBtnActive();
-  //     } else {
-  //       verifyShow = false;
-  //       verifyBtnInactive();
-  //     }
-  //   }
-  // })
-
-  // marcas
-  brand.on('input', inputBrandInput);
-
-  function inputBrandInput() {
-    // console.log(marcas);
-    // debugger
-    for (i = 0; i < Object.keys(marcas).length; i++) {
-      var brandName = Object.keys(marcas)[i];
-      // console.log(brandName);
-      if (brandName[i] === brand.val()) {
-        verifyBrand = true;
-        // verifyBtnActive();
-      } else {
-        verifyBrand = false;
-        // verifyBtnInactive();
-        
-      }
+  // funciones de verify boton active
+  function verifyBtnActive() {
+    if (verifyBrand && verifyHour && verifyDay) {
+      verifyReservationBtn.removeAttr('disabled');
     }
   }
 
-  // hora
-  selectHour.on('change', function() {
-    // debugger
-    console.log(selectHour.val());
-    if (selectHour.val()) {
-      verifyHour = true;
-      // verifyBtnActive();
-    } else {
-      verifyHour = false;
-      // verifyBtnInactive();
-    }
-  });
+  function verifyBtnInactive() {
+    verifyReservationBtn.attr('disabled', true); 
+  }
 
-  // dias
+  // validando eleccion de la marca
+  brand.on('change', inputBrandInput);
+
+  function inputBrandInput() {
+    console.log(marcas);
+    console.log(Object.keys(marcas));
+      if (brand.val()) {
+        verifyBrand = true;
+        verifyBtnActive();
+      } else {
+        verifyBrand = false;
+        verifyBtnInactive();
+    }
+  }
+  // $( "#myselect option:selected" ).text();
+
+  // validando eleccion del día
   dayOfWeek.on('change', function() {
-    // debugger
     console.log(dayOfWeek.val())
     if (dayOfWeek.val()) {
       verifyDay = true;
-      // verifyBtnActive();
+      verifyBtnActive();
     } else {
       verifyDay = false;
-      // verifyBtnInactive();
+      verifyBtnInactive();
+    }
+  });
+
+  // validando eleccion de la hora
+  selectHour.on('change', function() {
+    console.log(selectHour.val());
+    if (selectHour.val()) {
+      verifyHour = true;
+      verifyBtnActive();
+    } else {
+      verifyHour = false;
+      verifyBtnInactive();
     }
   });
 
@@ -344,11 +317,12 @@ $(document).ready(() => {
     window.location.href = 'reserve.html';
   }
 
-
+// agregandole evento de click al boton para abrir el modal
   verifyReservationBtn.on('click', triggerConfirmModal);
 
   function triggerConfirmModal() {
-   
+    var dayOfReservation = $('#day option:selected').text();
+    var timeOfReservation = $('select#hour option:selected').text();
     var confirmationModal = '';
     confirmationModal +=`
     <div class="row">
@@ -356,8 +330,8 @@ $(document).ready(() => {
     <div class="col offset-l4 l4">
       <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
       <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
-        <p class="font-color">Fecha : 24 de Febrero 2018</p>
-         <p class="font-color"> Hora:<span id="mdhour">6.36pm</span></h4>
+        <p class="font-color">Fecha :<span id="mdday">${dayOfReservation}</span></p>
+         <p class="font-color"> Hora:<span id="mdhour">${timeOfReservation}</span></h4>
          <p class="font-color"> Monto : <span>$ 1000</span></p>
          <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
          </div>
