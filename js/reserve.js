@@ -69,18 +69,6 @@ $(document).ready(() => {
 
   let scheduleProgram = [];
 
-  // funciones de verify boton active
-  function verifyBtnActive() {
-    if (verifyBrand && verifyHour && verifyDay) {
-      verifyReservationBtn.removeAttr('disabled');
-    }
-  }
-
-  function verifyBtnInactive() {
-    verifyReservationBtn.attr('disabled', true); 
-  }
-  
-
   // validacion de form de reserve html
   // autocompletado de MARCAS 
   $('input.autocomplete').autocomplete({
@@ -255,8 +243,6 @@ $(document).ready(() => {
 
   let option = '';
 
-  dayOfWeek.html('<option value= \'disabled selected\'>Elige el día</option>');
-
   // for (var i = day; i < diasSemana.length; i++) {
   //   opction = ` <option value= "${i}">${diasSemana[i]}</option>`;
   //   // dayOfWeek.append(option);
@@ -271,6 +257,17 @@ $(document).ready(() => {
 
   let idsession = sessionStorage.idProgram;
   getDataProgram(idsession);
+
+  // funciones de verify boton active
+  function verifyBtnActive() {
+    if (verifyBrand && verifyHour && verifyDay) {
+      verifyReservationBtn.removeAttr('disabled');
+    }
+  }
+
+  function verifyBtnInactive() {
+    verifyReservationBtn.attr('disabled', true); 
+  }
 
   // validando eleccion de la marca
   brand.on('change', inputBrandInput);
@@ -320,11 +317,12 @@ $(document).ready(() => {
     window.location.href = 'reserve.html';
   }
 
-
+// agregandole evento de click al boton para abrir el modal
   verifyReservationBtn.on('click', triggerConfirmModal);
 
   function triggerConfirmModal() {
-   
+    var dayOfReservation = $('#day option:selected').text();
+    var timeOfReservation = $('select#hour option:selected').text();
     var confirmationModal = '';
     confirmationModal +=`
     <div class="row">
@@ -332,8 +330,8 @@ $(document).ready(() => {
     <div class="col offset-l4 l4">
       <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
       <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
-        <p class="font-color">Fecha : 24 de Febrero 2018</p>
-         <p class="font-color"> Hora:<span id="mdhour">6.36pm</span></h4>
+        <p class="font-color">Fecha :<span id="mdday">${dayOfReservation}</span></p>
+         <p class="font-color"> Hora:<span id="mdhour">${timeOfReservation}</span></h4>
          <p class="font-color"> Monto : <span>$ 1000</span></p>
          <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
          </div>
