@@ -1,13 +1,7 @@
 # RESERVA DE ESPACIOS PUBLICITARIOS
 
 ## EL RETO:
-Miguel Ángel y Mafe representantes de Inovamerica, nos cuentan el enorme y molesto proceso por el cual se debe pasar antes de vender (en el caso de América) y comprar espacios publicitarios (en el caso de las agencias publicitarias); gracias a lo cual nace la idea de poder innovar en tecnología en un sector no tan convencional.
-
-## HERRAMIENTAS**_
-
-*[Trello]()
-
-![Trello]()
+Miguel Ángel y Mafe representantes de Innovamerica, nos cuentan el enorme y molesto proceso por el cual se debe pasar antes de vender (en el caso de América) y comprar espacios publicitarios (en el caso de las agencias publicitarias). Es por eso que nace la idea de poder innovar en tecnología en un sector no tan convencional.
 
 ## NUESTRO PROCESO UX :
 
@@ -50,7 +44,7 @@ La reserva de espacios publicitarios en tv que genera procesos que son largos y 
 
 2.    What if los espacios reservados siempre son los mismos?
 
-3.    What if los precios siempre son estandart?
+3.    What if los precios siempre son estandar?
 
 4.    What if siempre hay disponibilidad?
 
@@ -90,10 +84,22 @@ Mejoras de diseño
 ![Digital prototype](assets/images/3.jpg)
 ![Digital prototype](assets/images/4.jpg)
 
-## Herramientas usadas
+### Developers: 
+* [Daniela Gonzales](https://github.com/Danielalab)
+
+* [Claudia Gabibotto](https://github.com/Claudiagari)
+
+* [Andrea Encarnación](https://github.com/AndreEG)
+
+* [Haidy Duenñas](https://github.com/haidyduenas)
+
+* [Lucero Hospina](https://github.com/lucerohospina)
+
+###  Herramientas usadas
 1. HTML 5
 2. CSS 3
 3. Javascript
 4. Jquery
 5. Materialize
 6. Firebase
+7. [Trello](https://trello.com/b/Kq6Z48Wh/am%C3%A9rica-tv)
