@@ -349,7 +349,7 @@ $(document).ready(() => {
   });
   $('#confirm').on('click', function() {
     let amount = rode + fee ;
-    localStorage.amount = amount;
+    sessionStorage.amount = amount;
   });
 
   $(document).on('change', '#hour', function(event) {

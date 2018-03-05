@@ -108,10 +108,9 @@ $(document).ready(function() {
   });
 
   function gettingTotalAmount() {
-    if (amount) {
-      amount += parseInt(localStorage.amount);
-      $totalAmount.text(amount)
-;};
+    amount += parseInt(sessionStorage.amount);
+    $totalAmount.text(amount)
+    ;
   }
   gettingTotalAmount();
 });
