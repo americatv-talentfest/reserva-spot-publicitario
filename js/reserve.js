@@ -78,16 +78,16 @@ $(document).ready(() => {
       'Ariel': 'https://www.pg.com/es_LATAM/_images/content/multimedia/Logos_descargar/ariel.png',
       'BBVA': 'http://www.brandemia.org/wp-content/uploads/2011/02/logo_bbva.jpg',
       'Claro': 'https://vignette.wikia.nocookie.net/logopedia/images/7/73/Logo-claro-0.jpg/revision/latest?cb=20151229190721',
-      'Coca Cola': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/1200px-Coca-Cola_bottle_cap.svg.png',
+      'Coca-Cola': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/1200px-Coca-Cola_bottle_cap.svg.png',
       'Gloria': 'http://www.staffcreativa.pe/blog/wp-content/uploads/leche-gloria-logo.jpg',
-      'Inka Cola': 'https://yt3.ggpht.com/a-/AJLlDp2TzrDpBTlk2OyCx9Ec5B12y02Qed__BZYVEw=s900-mo-c-c0xffffffff-rj-k-no',
+      'Inka-Cola': 'https://yt3.ggpht.com/a-/AJLlDp2TzrDpBTlk2OyCx9Ec5B12y02Qed__BZYVEw=s900-mo-c-c0xffffffff-rj-k-no',
       'Inkafarma': 'https://lh3.googleusercontent.com/2bczTWKVlN37r7JwI4n4xVOcoOYqUstEV4RSAhLmt5p7PCzMeHEYpcLQx3U4O-dQvhVo=s117',
       'Isil': 'https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/092010/isil_logo.jpg?itok=jO5_MAfo',
       'KFC': 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png',
       'Movistar': 'https://www.underconsideration.com/brandnew/archives/movistar_logo.png',
       'Pamer': 'http://expopostulante.com/img/GUIA-CENTROS-PREUNIVESITARIOS/PAMER/pamer2.jpg',
       'SISE': 'https://lh3.googleusercontent.com/UQnpxQc7nzc0Efe5CSCwrj-IV4q9MFvxrV0DTYgL3IPL0fesnX3bB6BhpwobS8sXok8Tog=s170',
-      'Tai Loy': 'https://mall-prod.spincorp.cl/uploads/stores/d95beb5f46f4a7d5127355b0e0c9ae56.jpg'
+      'Tai-Loy': 'https://mall-prod.spincorp.cl/uploads/stores/d95beb5f46f4a7d5127355b0e0c9ae56.jpg'
     },
     limit: 20, // The max amount of results that camérica-noticias be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
@@ -144,7 +144,6 @@ $(document).ready(() => {
 
   // funcionalidad para extraer data a reserve al hacer click en un programa
   let getSchedule = (startTime, endTime) => {
-
     let minutes = 0;
     let hourStart = startTime[0];
     let hourEnd = endTime[0];
@@ -153,8 +152,7 @@ $(document).ready(() => {
     minutes += endTime[1];
     let sponsorTotal = minutes / 10;
     let counterSponsor = 0;
-    for (let timeCounter = startTime[1]+10; counterSponsor < sponsorTotal-1; counterSponsor++) {
-      
+    for (let timeCounter = startTime[1] + 10; counterSponsor < sponsorTotal - 1; counterSponsor++) {
       if (timeCounter === 60) {
         timeCounter = 00;
         hourStart += 1;
@@ -162,8 +160,8 @@ $(document).ready(() => {
         timeCounter = (timeCounter - 60);
         hourStart += 1;        
       }
-      if(hourStart===24) {
-        hourStart= 00;
+      if (hourStart === 24) {
+        hourStart = 00;
       }
       scheduleProgram.push(`${hourStart} : ${timeCounter}`);      
       timeCounter += 10;
@@ -194,19 +192,23 @@ $(document).ready(() => {
   let rode;   
   let fee;
   let getPrice = (marca) => {
-   
+    marca = marca.toLowerCase()
+    console.log(marca)
     var createDate = new Date(); 
     let timeOfTheDay = createDate.getHours();
     console.log(marcas[marca].precio);
-    // rode = (dataProgramPrice + marcas[marca].precio);    
-    // if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
-    //   fee = 0.00;
-    // } else if (timeOfTheDay > 12 && timeOfTheDay <= 4) {
-    //   fee = (rode * 5 / 100);
-    // } else if (timeOfTheDay > 16 || timeOfTheDay <= 8) {
-    //   fee = (rode * 15 / 100);
-    // }
+    rode = (dataProgramPrice + marcas[marca].precio);    
+    if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
+      fee = 0.00;
+    } else if (timeOfTheDay > 12 && timeOfTheDay <= 16) {
+      fee = (rode * 5 / 100);
+    } else if (timeOfTheDay > 16 || timeOfTheDay <= 8) {
+      fee = (rode * 15 / 100);
+    }
+    console.log(rode);
+    console.log(fee);
   };
+
 
   // temina obtener monto
   function redirectReserve() {
@@ -321,19 +323,21 @@ $(document).ready(() => {
   verifyReservationBtn.on('click', triggerConfirmModal);
 
   function triggerConfirmModal() {
+    let brandPrice = brand.val();
+    getPrice(brandPrice);
     var dayOfReservation = $('#day option:selected').text();
     var timeOfReservation = $('select#hour option:selected').text();
     var confirmationModal = '';
-    confirmationModal +=`
-    <div class="row">
+    confirmationModal += `
+    <div class="row center-align">
     <h4 class="font-color-2">Datos de Reserva</h4>    
     <div class="col offset-l4 l4">
       <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
       <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
         <p class="font-color">Fecha :<span id="mdday">${dayOfReservation}</span></p>
          <p class="font-color"> Hora:<span id="mdhour">${timeOfReservation}</span></h4>
-         <p class="font-color"> Monto : <span>$ 1000</span></p>
-         <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
+         <p class="font-color"> Monto : <span>${rode}</span></p>
+         <p class="font-color"> Recargo : <span id="mdrecargo">${fee}</span></p>
          </div>
          </div>
     `;
