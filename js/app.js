@@ -108,8 +108,10 @@ $(document).ready(function() {
   });
 
   function gettingTotalAmount() {
-    amount += parseInt(localStorage.amount);
-    $totalAmount.text(amount);
+    if (amount) {
+      amount += parseInt(localStorage.amount);
+      $totalAmount.text(amount)
+;};
   }
   gettingTotalAmount();
 });
