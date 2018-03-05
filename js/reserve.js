@@ -331,13 +331,13 @@ $(document).ready(() => {
     confirmationModal += `
     <div class="row center-align">
     <h4 class="font-color-2">Datos de Reserva</h4>    
-    <div class="col offset-l4 l4">
+    <div class="">
       <p class="font-color">Marca: <span id="mdmarca">${brand.val()}</span></h4>
       <p class="font-color">Programa: <span id="mdprogram">${program.val()}</span> </p>
-        <p class="font-color">Fecha :<span id="mdday">${dayOfReservation}</span></p>
-         <p class="font-color"> Hora:<span id="mdhour">${timeOfReservation}</span></h4>
-         <p class="font-color"> Monto : <span>${rode}</span></p>
-         <p class="font-color"> Recargo : <span id="mdrecargo">${fee}</span></p>
+        <p class="font-color">Fecha : <span id="mdday">${dayOfReservation}</span></p>
+         <p class="font-color"> Hora: <span id="mdhour">${timeOfReservation}</span></h4>
+         <p class="font-color"> Monto : $ <span>${rode}</span></p>
+         <p class="font-color"> Recargo : $ <span id="mdrecargo">${fee}</span></p>
          </div>
          </div>
     `;
