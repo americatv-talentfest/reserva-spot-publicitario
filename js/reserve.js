@@ -192,8 +192,8 @@ $(document).ready(() => {
   let rode;   
   let fee;
   let getPrice = (marca) => {
-    marca = marca.toLowerCase()
-    console.log(marca)
+    marca = marca.toLowerCase();
+    console.log(marca);
     var createDate = new Date(); 
     let timeOfTheDay = createDate.getHours();
     console.log(marcas[marca].precio);
@@ -347,7 +347,10 @@ $(document).ready(() => {
   $('#reservation-btn').on('click', function(e) {
     e.preventDefault();
   });
-
+  $('#confirm').on('click', function() {
+    let amount = rode + fee ;
+    localStorage.amount = amount;
+  });
 
   $(document).on('change', '#hour', function(event) {
     $('#hour option:selected').prop('disabled', 'disabled');

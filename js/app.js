@@ -10,6 +10,8 @@ $(document).ready(function() {
   firebase.initializeApp(config);
   
   // declaramos variables
+  var amount = 0;
+  var $totalAmount = $('#totalAmount p span');
   var $loginBtn = $('#login-btn');
   var $googleLogin = $('#login-google');
   var $email = $('#email');
@@ -104,4 +106,10 @@ $(document).ready(function() {
       console.log(error);
     });
   });
+
+  function gettingTotalAmount() {
+    amount += parseInt(localStorage.amount);
+    $totalAmount.text(amount);
+  }
+  gettingTotalAmount();
 });
