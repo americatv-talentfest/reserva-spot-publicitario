@@ -162,7 +162,7 @@ $(document).ready(() => {
         timeCounter = (timeCounter - 60);
         hourStart += 1;        
       }
-      if(hourStart===24){
+      if(hourStart===24) {
         hourStart= 00;
       }
       scheduleProgram.push(`${hourStart} : ${timeCounter}`);      
@@ -197,7 +197,7 @@ $(document).ready(() => {
    
     var createDate = new Date(); 
     let timeOfTheDay = createDate.getHours();
-    console.log(marcas[marca].precio)
+    console.log(marcas[marca].precio);
     // rode = (dataProgramPrice + marcas[marca].precio);    
     // if (timeOfTheDay > 8 && timeOfTheDay <= 12) {
     //   fee = 0.00;
@@ -275,19 +275,19 @@ $(document).ready(() => {
   function inputBrandInput() {
     console.log(marcas);
     console.log(Object.keys(marcas));
-      if (brand.val()) {
-        verifyBrand = true;
-        verifyBtnActive();
-      } else {
-        verifyBrand = false;
-        verifyBtnInactive();
+    if (brand.val()) {
+      verifyBrand = true;
+      verifyBtnActive();
+    } else {
+      verifyBrand = false;
+      verifyBtnInactive();
     }
   }
   // $( "#myselect option:selected" ).text();
 
   // validando eleccion del día
   dayOfWeek.on('change', function() {
-    console.log(dayOfWeek.val())
+    console.log(dayOfWeek.val());
     if (dayOfWeek.val()) {
       verifyDay = true;
       verifyBtnActive();
@@ -317,7 +317,7 @@ $(document).ready(() => {
     window.location.href = 'reserve.html';
   }
 
-// agregandole evento de click al boton para abrir el modal
+  // agregandole evento de click al boton para abrir el modal
   verifyReservationBtn.on('click', triggerConfirmModal);
 
   function triggerConfirmModal() {
@@ -336,13 +336,15 @@ $(document).ready(() => {
          <p class="font-color"> Recargo : <span id="mdrecargo">$150</span></p>
          </div>
          </div>
-    `
-    $('.modal-content').html(confirmationModal)
+    `;
+    $('.modal-content').html(confirmationModal);
   }
-$('#reservation-btn').on('click', function(e){
-  e.preventDefault();
-  
-})
+
+  $('#reservation-btn').on('click', function(e) {
+    e.preventDefault();
+  });
+
+
   $(document).on('change', '#hour', function(event) {
     $('#hour option:selected').prop('disabled', 'disabled');
     $('#confirm').on('click', function() {

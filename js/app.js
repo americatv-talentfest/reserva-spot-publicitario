@@ -64,7 +64,7 @@ $(document).ready(function() {
 
   
   // Login con email/Funcion click del login
-  /*$loginBtn.click(function(event) {
+  /* $loginBtn.click(function(event) {
     event.preventDefault();
 
     var email = $email.val();
