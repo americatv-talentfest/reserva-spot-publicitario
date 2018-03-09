@@ -343,15 +343,20 @@ $(document).ready(() => {
     `;
     $('.modal-content').html(confirmationModal);
   }
-
   $('#reservation-btn').on('click', function(e) {
     e.preventDefault();
   });
+  let sessionAmount = parseInt(sessionStorage.amount);
+  console.log(sessionAmount);
   $('#confirm').on('click', function() {
-    let amount = rode + fee ;
-    sessionStorage.amount = amount;
+    if (sessionAmount !== NaN && sessionAmount > 0) {
+      let amount = rode + fee;
+      sessionStorage.amount = amount + sessionAmount;
+    } else {
+      let amount = rode + fee;
+      sessionStorage.amount = amount;
+    }
   });
-
   $(document).on('change', '#hour', function(event) {
     $('#hour option:selected').prop('disabled', 'disabled');
     $('#confirm').on('click', function() {

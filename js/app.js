@@ -8,10 +8,10 @@ $(document).ready(function() {
     messagingSenderId: '716121533286'
   };
   firebase.initializeApp(config);
-  
+ 
   // declaramos variables
-  var amount = 0;
-  var $totalAmount = $('#totalAmount p span');
+  
+
   var $loginBtn = $('#login-btn');
   var $googleLogin = $('#login-google');
   var $email = $('#email');
@@ -107,10 +107,6 @@ $(document).ready(function() {
     });
   });
 
-  function gettingTotalAmount() {
-    amount += parseInt(sessionStorage.amount);
-    $totalAmount.text(amount)
-    ;
-  }
-  gettingTotalAmount();
+  $('#totalAmount p span').text(sessionStorage.amount);
+  
 });
