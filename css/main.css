@@ -178,3 +178,11 @@ h2{
 .click span {
   color: transparent;
 }
+
+.click {
+  cursor: pointer;
+}
+
+.click:hover {
+  font-weight: bold;
+}

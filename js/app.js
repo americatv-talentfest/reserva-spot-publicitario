@@ -8,8 +8,10 @@ $(document).ready(function() {
     messagingSenderId: '716121533286'
   };
   firebase.initializeApp(config);
-  
+ 
   // declaramos variables
+  
+
   var $loginBtn = $('#login-btn');
   var $googleLogin = $('#login-google');
   var $email = $('#email');
@@ -64,7 +66,7 @@ $(document).ready(function() {
 
   
   // Login con email/Funcion click del login
-  /*$loginBtn.click(function(event) {
+  /* $loginBtn.click(function(event) {
     event.preventDefault();
 
     var email = $email.val();
@@ -104,4 +106,7 @@ $(document).ready(function() {
       console.log(error);
     });
   });
+
+  $('#totalAmount p span').text(sessionStorage.amount);
+  
 });

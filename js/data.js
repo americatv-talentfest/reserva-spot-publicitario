@@ -56,7 +56,7 @@ var programas = {
     'precio': 2200
   },
   'america-deportes': {
-    'horario': [ [ 8, 20 ], [ 8, 30 ] ],
+    'horario': [ [ 8, 00 ], [ 8, 30 ] ],
     'precio': 500
   },
   'amores-de-polo': {
