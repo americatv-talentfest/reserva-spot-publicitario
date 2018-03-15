@@ -51,12 +51,12 @@ body{
   margin: 0px;
 }
 .div-day{
-   background: black;
+   background: #fff;
    border-radius: 5px;
    padding-top: 10px;
    padding-bottom: 10px;
    font-size: 18px;
-   color: #fff;
+   color: black;
 }
 
 .vh-200{
@@ -64,20 +64,20 @@ body{
 }
 .vh-200 p.p-height{
   height:5.882352941176471%;
-  border: 1px solid black;
+  border: 1px solid #fff;
   
 }
 .vh-200 p.p-height-18{
   height:5.55555555556%;
-  border: 1px solid black;
+  border: 1px solid #fff;
 }
 .vh-200 p.p-height-14{
   height:7.14571428%;
-  border: 1px solid black;
+  border: 1px solid #fff;
 }
 .vh-200 p.p-height-11{
   height:9.09090909090909%;
-  border: 1px solid black;
+  border: 1px solid #fff;
 }
 /*estilos a home*/
 #week{
